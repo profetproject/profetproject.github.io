@@ -1,0 +1,29 @@
+title: PROFET
+description: Cryptographic Foundations for Future-Proof Internet Security
+url: https://profet.at
+baseurl: ""
+paginate_path: "blog/page:num/"
+permalink: blog/:title/
+
+markdown: kramdown
+highlighter: rouge
+gems: [jekyll-paginate]
+paginate: 5
+
+navigation:
+ - title: Home
+   url: /index.html
+ - title: About
+   url: /about
+ - title: Members
+   url: /members
+ - title: Publications
+   url: /pubs  
+
+collections:
+  - pubs
+
+social:
+   github: drl3c7er
+   twitter: drl3c7er
+   email: daniel.slamanig@ait.ac.at

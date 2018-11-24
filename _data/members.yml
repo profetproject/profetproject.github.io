@@ -1,0 +1,45 @@
+- name: Daniel Slamanig
+  role: PI
+  institute: AIT
+  twitter: drl3c7er
+  web: https://danielslamanig.info
+  cv: "Daniels' main research interests are in the field of cryptography and privacy with a focus on practical public key cryptographic primitives, privacy-preserving cryptography, 
+  their foundations and their applications in emerging fields such as cloud computing and the Internet of Things (IoT)."
+  pic: daniel_web2.png
+
+- name: Matteo Maffei
+  role: Co-PI
+  institute: TU Wien
+  twitter: matteo_maffei
+  web: https://secpriv.tuwien.ac.at/team/univ_prof_matteo_maffei/
+  cv: "Matteos' research interests concentrate on formal methods for the verification of security and privacy properties, with a specific focus on web, mobile, and 
+  cryptographic applications, and applied cryptography, in particular privacy-preserving solutions for outsourced storage, analytics, distributed computation, 
+  and blockchain."
+  pic: matteo_web.png
+
+- name: Christoph Striecks
+  role: Postdoc
+  institute: AIT 
+  twitter: CStriecks
+  web: https://cstriecks.github.io/
+  cv: "Christophs' research focus lies mainly in the field of modern cryptographic building blocks, in particular, in form of identity-based 
+  and attribute-based encryption as well as digital signatures. On the application level, he is mainly interested in modern connected systems with an 
+  emphasis on enhanced security features (e.g., forward secrecy) and resource-asymmetric devices (e.g., the Internet of Things)."
+  pic: christoph_web.jpg   
+
+
+- name: TBD
+  role: PhD Student
+  institute: AIT
+  twitter:
+  web:
+  cv: 
+  pic: tbd.png
+
+- name: TBD
+  role: PhD Student
+  institute: TU Wien
+  twitter:
+  web:
+  cv: 
+  pic: tbd.png

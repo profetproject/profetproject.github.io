@@ -1,1 +1,32 @@
-Project website will be available soon
+---
+layout: default
+title: PROFET
+---
+
+<div class="home" id="home">
+
+  <p align="justify">The PROFET project is a three year project that receives funding from the <a href="https://www.nic.at/de/das-unternehmen/ipa" target="_blank">Internet Privatstiftung Austria (IPA)</a> under the <a href="https://www.netidee.at/" target="_blank">netidee SCIENCE program</a> under FWF project number P 31621.</p>
+
+  <p align="justify">The project is led by <a href="https://danielslamanig.info" target="_blank">Dr. Daniel Slamanig</a> at the <a href="https://ait.ac.at" target="_blank">AIT Austrian Institute of Technology</a> and the research is carried out together with the Security and Privacy group from <a href="https://secpriv.tuwien.ac.at/team/univ_prof_matteo_maffei/" target="_blank">Prof. Matteo Maffei</a> at <a href="https://www.tuwien.ac.at/en/" target="_blank">TU Wien</a>.</p>
+
+
+  <h3 class="pageTitle">News</h3>
+  <ul class="posts noList">
+    {% for post in paginator.posts %}
+      <li>
+        <span class="date">{{ post.date | date: '%B %d, %Y' }}</span>
+        <h3><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+        <p>{% if post.description %}{{ post.description }}{% else %}{{ post.excerpt | strip_html }}{% endif %}</p>
+      </li>
+    {% endfor %}
+  </ul>
+  <!-- Pagination links -->
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous button__outline">Newer Posts</a> 
+    {% endif %}
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next button__outline">Older Posts</a>
+    {% endif %}
+  </div>
+</div>

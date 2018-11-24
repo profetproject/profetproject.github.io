@@ -1,0 +1,42 @@
+<tr style="border: none">
+  <td style="border: none">{{post.year}}</td>
+  <td style="border: none">{{post.authors}} - <b><i>"{{post.title}}"</i></b> - {% if post.vurl %}<a href="{{post.vurl}}">{{post.venue}}</a>{% else %}{{post.venue}}{% endif %}{% if post.vatt %} {{post.vatt}}{% endif %}.</td>
+  <td style="border: none">
+    <table class="dltable" style="border: none">
+      <tr>
+        <td class="downloadpdf" style="border: none">
+          {% if post.pdf %}<a href="{{post.pdf}}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+          {% else %} <i class="fa fa-file-pdf-o"></i>
+          {% endif %}
+        </td>
+        <td class="downloadpdf" style="border: none">
+          {% if post.pub %}<a href="{{post.pub}}" target="_blank"><i class="fa fa-book"></i></a>
+          {% else %} <i class="fa fa-book"></i>
+          {% endif %}
+        </td>
+        <td class="download" style="border: none">
+          {% if post.web %}<a href="{{post.web}}" target="_blank"><i class="fa fa-globe"></i></a>
+          {% else %} <i class="fa fa-globe"></i>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td  class="download" style="border: none">
+          {% if post.talk %}<a href="{{post.talk}}" target="_blank"><i class="fa fa-television"></i></a>
+          {% else %} <i class="fa fa-television"></i>
+          {% endif %}
+        </td>
+        <td  class="download" style="border: none">
+          {% if post.bib %}<a href="{{post.bib}}" target="_blank"><i class="fa fa-link"></i></a>
+          {% else %} <i class="fa fa-link"></i>
+          {% endif %}
+        </td>
+        <td class="download" style="border: none">
+          {% if post.github %}<a href="{{post.github}}" target="_blank"><i class="fa fa-code"></i></a>
+          {% else %} <i class="fa fa-code"></i>
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
