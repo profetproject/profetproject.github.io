@@ -1,7 +1,7 @@
-<tr style="border: none">
-  <td style="border: none">{{post.year}}</td>
-  <td style="border: none">{{post.authors}} - <b><i>"{{post.title}}"</i></b> - {% if post.vurl %}<a href="{{post.vurl}}">{{post.venue}}</a>{% else %}{{post.venue}}{% endif %}{% if post.vatt %} {{post.vatt}}{% endif %}.</td>
-  <td style="border: none">
+<tr >
+  <td >{{post.year}}</td>
+  <td >{{post.authors}} - <b><i>"{{post.title}}"</i></b> - {% if post.vurl %}<a href="{{post.vurl}}">{{post.venue}}</a>{% else %}{{post.venue}}{% endif %}{% if post.vatt %} {{post.vatt}}{% endif %}.</td>
+  <td >
     <table class="pubtable">
       <tr>
         <td class="pubentry">
@@ -26,12 +26,12 @@
           {% else %} <i class="fa fa-television"></i>
           {% endif %}
         </td>
-        <td  class="pubentry" style="border: none">
+        <td  class="pubentry">
           {% if post.bib %}<a href="{{post.bib}}" target="_blank"><i class="fa fa-link"></i></a>
           {% else %} <i class="fa fa-link"></i>
           {% endif %}
         </td>
-        <td class="pubentry" style="border: none">
+        <td class="pubentry">
           {% if post.github %}<a href="{{post.github}}" target="_blank"><i class="fa fa-code"></i></a>
           {% else %} <i class="fa fa-code"></i>
           {% endif %}
