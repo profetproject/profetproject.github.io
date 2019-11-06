@@ -112,30 +112,11 @@ strong {
 table.dltable {
   margin:0 0 0px;
 }
-.download i {
-  color:#dfdfdf;
-}
-.download a i {
-  color:#393939;
-  text-decoration:none;
+
+.pubtable tr.pubentry:nth-child(even) {
+  background: #efefef;
 }
 
-.download a i:hover {
-  color:#006600;
-}
-
-.downloadpdf i {
-  color:#dfdfdf;
-}
-
-.downloadpdf a i {
-  color:#393939;
-  text-decoration:none;
-}
-
-.downloadpdf a i:hover {
-  color:#006600;
-}
 
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.

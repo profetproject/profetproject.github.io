@@ -2,7 +2,7 @@
   <td style="border: none">{{post.year}}</td>
   <td style="border: none">{{post.authors}} - <b><i>"{{post.title}}"</i></b> - {% if post.vurl %}<a href="{{post.vurl}}">{{post.venue}}</a>{% else %}{{post.venue}}{% endif %}{% if post.vatt %} {{post.vatt}}{% endif %}.</td>
   <td style="border: none">
-    <table class="dltable" style="border: none">
+    <table class="pubtable" style="border: none">
       <tr>
         <td class="downloadpdf" style="border: none">
           {% if post.pdf %}<a href="{{post.pdf}}" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
