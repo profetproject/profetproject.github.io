@@ -14,7 +14,7 @@ title: About PROFET
 
 <p align="justify">The project is led by <a href="https://danielslamanig.info" target="_blank">Dr. Daniel Slamanig</a> at the <a href="https://ait.ac.at" target="_blank">AIT Austrian Institute of Technology</a> and the research is carried out together with the Security and Privacy group from <a href="https://secpriv.tuwien.ac.at/team/univ_prof_matteo_maffei/" target="_blank">Prof. Matteo Maffei</a> at <a href="https://www.tuwien.ac.at/en/" target="_blank">TU Wien</a>.</p>
 	
-<p align="justify">This project receives funding from the <a href="https://www.nic.at/de/das-unternehmen/ipa" target="_blank">Internet Privatstiftung Austria (IPA)</a> under the <a href="https://www.netidee.at/" target="_blank">netidee SCIENCE program</a> under FWF project number P 31621.</p>
+<p align="justify">This project receives funding from the <a href="https://www.nic.at/de/das-unternehmen/ipa" target="_blank">Internet Privatstiftung Austria (IPA)</a> under the <a href="https://www.netidee.at/" target="_blank">netidee SCIENCE program</a> under FWF project number P 31621-N38.</p>
 
 <img src="{{ '/assets/img/touring.jpg' | prepend: site.baseurl }}" alt="">
 
