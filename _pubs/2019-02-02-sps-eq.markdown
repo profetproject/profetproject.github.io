@@ -1,0 +1,13 @@
+---
+layout: post
+year: 2019
+title: "Structure-Preserving Signatures on Equivalence Classes From Standard Assumptions"
+authors: Mojtaba Khalili, Daniel Slamanig, Mohammad Dakhilalian
+venue: "25th Annual International Conference on the Theory and Application of Cryptology and Information Security - ASIACRYPT 2019, December 8-12 2019, Kobe, Japan"
+vurl: https://asiacrypt.iacr.org/2019/
+vatt: (accepted)
+pdf: http://eprint.iacr.org/2019/1120.pdf
+web: http://eprint.iacr.org/2019/1120
+---
+
+
