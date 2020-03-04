@@ -5,9 +5,10 @@ title: "A Framework for UC-Secure Commitments from Publicly Computable Smooth Pr
 authors: Behzad Abdolmaleki, Hamidreza Khoshakhlagh, Daniel Slamanig
 venue: "17th IMA International Conference on Cryptography and Coding - IMACC 2019, 16-18 December 2019, Oxford, UK."
 vurl: https://ima.org.uk/11167/17th-ima-international-conference-on-cryptography-and-coding/
-vatt: (accepted)
 pdf: http://eprint.iacr.org/2019/1063.pdf
 web: http://eprint.iacr.org/2019/1063
+pub: https://doi.org/10.1007/978-3-030-35199-1_1
+bib: https://dblp.org/rec/bibtex/conf/ima/AbdolmalekiKS19
 ---
 
 

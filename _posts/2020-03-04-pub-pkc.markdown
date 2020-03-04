@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "Paper accepted at PKC"
+date:   2020-03-03
+description: Paper accepted for publication at PKC 2020...
+---
+
+<p class="blockquote" align="justify">Recently a paper was accepted for publication at the <a href="https://pkc.iacr.org/2020/" target="_blank">23rd IACR International Conference on Practice and Theory of Public-Key Cryptography - PKC 2020</a>. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a> and the abstract can be found below.</p>
+
+<hr> 
+<p class="blockquote" align="justify">David Derler, Kai Samelin, <b>Daniel Slamanig</b>: <b>Bringing Order to Chaos: The Case of Collision-Resistant Chameleon-Hashes</b>. 23rd IACR International Conference on Practice and Theory of Public-Key Cryptography - PKC 2020, May 4-7 2020, Edinburgh, Scotland.</p>
+
+<p><b>Abstract:</b> Chameleon-hash functions, introduced by Krawczyk and Rabin at NDSS 2000, are trapdoor collision-resistant hash-functions parametrized by a public key. If the corresponding secret key is known, arbitrary collisions for the hash function can be efficiently found. Chameleon-hash functions have prominent applications in the design of cryptographic primitives, such as lifting non-adaptively secure signatures to adaptively secure ones. Recently, this primitive also received a lot of attention as a building block in more complex cryptographic applications ranging from editable blockchains to advanced signature and encryption schemes. 
+
+We observe that in latter applications various different notions of collision-resistance are used, and it is not always clear if the respective notion does really cover what seems intuitively required by the application. Therefore, we revisit existing collision-resistance notions in the literature, study their relations, and - using the example of the recent redactable blockchain proposals - discuss which practical impact different notions of collision-resistance might have. Moreover, we provide a stronger, and arguably more desirable, notion of collision-resistance than what is known from the literature. Finally, we present a surprisingly simple and efficient black-box construction of chameleon-hash functions achieving this strong notion.</p>
+<hr> 
