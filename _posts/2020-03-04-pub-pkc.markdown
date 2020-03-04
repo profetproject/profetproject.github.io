@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Paper accepted at PKC"
+title:  "Paper accepted at PKC 2020"
 date:   2020-03-03
-description: Paper accepted for publication at PKC 2020...
+description: Paper accepted for publication at IACR PKC 2020...
 ---
 
 <p class="blockquote" align="justify">Recently a paper was accepted for publication at the <a href="https://pkc.iacr.org/2020/" target="_blank">23rd IACR International Conference on Practice and Theory of Public-Key Cryptography - PKC 2020</a>. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a> and the abstract can be found below.</p>
