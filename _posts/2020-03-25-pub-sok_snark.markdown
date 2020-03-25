@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "SoK Paper at 3rd ZKProof (Online) Workshop"
-date:   2020-03-03
+date:   2020-03-25
 description: Our SoK paper on lifting transformations...
 ---
 
