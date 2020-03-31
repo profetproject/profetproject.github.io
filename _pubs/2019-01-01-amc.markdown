@@ -3,7 +3,7 @@ layout: post
 year: 2019
 title: "Atomic Multi-Channel Updates with Constant Collateral in Bitcoin-Compatible Payment-Channel Networks"
 authors: Christoph Egger, Pedro Moreno-Sanchez, Matteo Maffei
-venue: "26th ACM Conference on Computer and Communications Security - ACM CCS 2019, 11-15 November 2019, London, UK."
+venue: "26th ACM Conference on Computer and Communications Security - ACM CCS 2019, 11-15 November 2019, London, UK"
 vurl: https://www.sigsac.org/ccs/CCS2019/
 pdf: https://eprint.iacr.org/2019/583.pdf
 web: https://eprint.iacr.org/2019/583
