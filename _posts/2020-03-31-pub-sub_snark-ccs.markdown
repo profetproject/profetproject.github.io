@@ -5,7 +5,7 @@ date:   2020-03-31
 description: Our paper on lifting transformations...
 ---
 
-<p class="blockquote" align="justify">Our paper on lifting transformations for simulation extractable subversion and updatable SNARKs has been accepted at the <a href="https://www.sigsac.org/ccs/CCS2020/" target="_blank"> 27th ACM Conference on Computer and Communications Security - ACM CCS 2020</a>. It is the flagship annual conference of the Special Interest Group on Security, Audit and Control (SIGSAC) of the Association for Computing Machinery (ACM) and one of the four top tier international conferences in computer security research.
+<p class="blockquote" align="justify">Our paper on lifting transformations for simulation extractable subversion and updatable SNARKs has been accepted at the <a href="https://www.sigsac.org/ccs/CCS2020/" target="_blank"> 27th ACM Conference on Computer and Communications Security - ACM CCS 2020</a>. It is the flagship annual conference of the Special Interest Group on Security, Audit and Control (SIGSAC) of the Association for Computing Machinery (ACM) and one of the four top tier international conferences in computer security research. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a> and the abstract can be found below.</p>
 
 <hr> 
 <p class="blockquote" align="justify">Behzad Abdolmaleki, Sebastian Ramacher, <b>Daniel Slamanig</b>: <b>Lift-and-Shift: Obtaining Simulation Extractable Subversion and Updatable SNARKs Generically</b>. 27th ACM Conference on Computer and Communications Security - ACM CCS 2020, November 9-13 2020, Orlando, USA.</p>
