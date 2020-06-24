@@ -1,0 +1,15 @@
+---
+layout: post
+year: 2020
+title: "Fully Collision-Resistant Chameleon-Hashes from Simpler and Post-Quantum Assumptions"
+authors: David Derler, Stephan Krenn, Kai Samelin, Daniel Slamanig
+venue: "12th Conference on Security and Cryptography for Networks - SCN 2020"
+vatt: (accepted)
+vurl: https://scn.unisa.it/
+
+---
+
+
+---
+
+
