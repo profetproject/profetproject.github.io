@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Paper accepted to Journal of Cryptology"
+date:   2020-07-24
+description: Our paper on forward-secret 0-RTT key-exchange protocols...
+---
+
+<p class="blockquote" align="justify">Our paper on forward-secret 0-RTT key-exchange protocols (a revised and extended version of a previous paper that appeared at EUROCRYPT 2018) has been accepted for publication in the <a href="https://www.springer.com/journal/00145" target="_blank">Journal of Cryptology</a>. The Journal of Cryptology is ranked A* and the official journal of the <a href="https://www.iacr.org/" target="_blank">International Association for Cryptologic Research (IACR)</a>. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a> and the abstract can be found below.</p>
+
+<hr> 
+<p class="blockquote" align="justify">David Derler, Kai Gellert, Tibor Jager, Daniel Slamanig, Christoph Striecks: <b>Bloom Filter Encryption and Applications to Efficient Forward-Secret 0-RTT Key Exchange</b>. Journal of Cryptology, 2020.</p>
+
+<p><b>Abstract:</b> Forward secrecy is considered an essential design goal of modern key establishment (KE) protocols, such as TLS 1.3, for example. Furthermore, efficiency considerations such as zero round-trip time (0-RTT), where a client is able to send cryptographically protected payload data along with the very first KE message, are motivated by the practical demand for secure low-latency communication. 
+
+For a long time, it was unclear whether protocols that simultaneously achieve 0-RTT and full forward secrecy exist. Only recently, the first forward-secret 0-RTT protocol was described by G&uuml;nther et al. (EUROCRYPT 2017). It is based on Puncturable Encryption. Forward secrecy is achieved by "puncturing" the secret key after each decryption operation, such that a given ciphertext can only be decrypted once (cf. also Green and Miers, S&amp;P 2015). Unfortunately, their scheme is completely impractical, since one puncturing operation takes between 30 seconds and several minutes for reasonable security and deployment parameters, such that this solution is only a first feasibility result, but not efficient enough to be deployed in practice.
+
+In this paper, we introduce a new primitive that we term Bloom Filter Encryption (BFE), which is derived from the probabilistic Bloom filter data structure. We describe different constructions of BFE schemes, and show how these yield new puncturable encryption mechanisms with extremely efficient puncturing. Most importantly, a puncturing operation only involves a small number of very efficient computations, plus the deletion of certain parts of the secret key, which outperforms previous constructions by orders of magnitude. This gives rise to the first forward-secret 0-RTT protocols that are efficient enough to be deployed in practice. We believe that BFE will find applications beyond forward-secret 0-RTT protocols.</p>
+<hr> 

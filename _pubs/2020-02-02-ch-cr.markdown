@@ -3,7 +3,7 @@ layout: post
 year: 2020
 title: "Bringing Order to Chaos: The Case of Collision-Resistant Chameleon-Hashes"
 authors: David Derler, Kai Samelin, Daniel Slamanig
-venue: "23rd IACR International Conference on Practice and Theory of Public-Key Cryptography - PKC 2020, (to be announced), Edinburgh, Scotland"
+venue: "23rd IACR International Conference on Practice and Theory of Public-Key Cryptography - PKC 2020, June 1-4 2020, Edinburgh, Scotland (virtual)"
 vurl: https://pkc.iacr.org/2020/
 pdf: http://eprint.iacr.org/2020/403.pdf
 web: http://eprint.iacr.org/2020/403
