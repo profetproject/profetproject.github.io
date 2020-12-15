@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Paper presented at Asiacrypt 2020"
+date:   2020-12-15
+description: Last week Valerio presented...
+---
+
+<p class="blockquote" align="justify">Last week Valerio presented our paper<b>CCA-Secure (Puncturable) KEMs from Encryption With Non-Negligible Decryption Errors</b> at <a href="https://asiacrypt.iacr.org/2020/" target="_blank">Asiacrypt 2020</a>. The recordings of the talk are available <a href="https://youtube.com/watch?v=UoqhyFyLnn4" target="_blank">here</a> and the full version of the paper can be found <a href="https://eprint.iacr.org/2020/1548" target="_blank">on the IACR ePrint Archive</a>. The Journal of Cryptology is ranked A* and the official journal of the <a href="https://www.iacr.org/" target="_blank">International Association for Cryptologic Research (IACR)</a>. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a> and the abstract can be found below.
+</p>
+
+<hr> 
+<p class="blockquote" align="justify">Valerio Cini, Sebastian Ramacher, Daniel Slamanig, Christoph Striecks: <b>CCA-Secure (Puncturable) KEMs from Encryption With Non-Negligible Decryption Errors</b>. 26th Annual International Conference on the Theory and Application of Cryptology and Information Security - ASIACRYPT 2020, 
+December 7-11 2020, Virtual.</p>
+
+<p><b>Abstract:</b> Public-key encryption (PKE) schemes or key-encapsulation mechanisms (KEMs) are fundamental cryptographic building blocks to realize secure communication protocols. There are several known transformations that generically turn weakly secure schemes into strongly (i.e., IND-CCA) secure ones. While most of these transformations require the weakly secure scheme to provide perfect correctness, Hofheinz, Hövelmanns, and Kiltz (HHK) (TCC 2017) have recently shown that variants of the Fujisaki-Okamoto (FO) transform can work with schemes that have negligible correctness error in the (quantum) random oracle model (QROM). Many recent schemes in the NIST post-quantum competition (PQC) use variants of these transformations. Some of their CPA-secure versions even have a non-negligible correctness error and so the techniques of HHK cannot be applied.
+
+In this work, we study the setting of generically transforming PKE schemes with potentially large, i.e., non-negligible, correctness error to ones having negligible correctness error. While there have been previous treatments in an asymptotic setting by Dwork, Naor, and Reingold (EUROCRYPT 2004), our goal is to come up with practically efficient compilers in a concrete setting and apply them in two different contexts. Firstly, we show how to generically transform weakly secure deterministic or randomized PKEs into CCA-secure KEMs in the (Q)ROM using variants of HHK. This applies to essentially all candidates to the NIST PQC based on lattices and codes with non-negligible error for which we provide an extensive analysis. We thereby show that it improves some of the code-based candidates. Secondly, we study puncturable KEMs in terms of the Bloom Filter KEM (BFKEM) proposed by Derler et al. (EUROCRYPT 2018) which inherently have a non-negligible correctness error. BFKEMs are a building block to construct fully forward-secret zero round-trip time (0-RTT) key-exchange protocols. In particular, we show the first approach towards post-quantum secure BFKEMs generically from lattices and codes by applying our techniques to identity-based encryption (IBE) schemes with (non-)negligible correctness error.</p>
+<hr> 
