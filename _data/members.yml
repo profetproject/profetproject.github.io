@@ -31,7 +31,7 @@
 - name: Valerio Cini
   role: PhD Student
   institute: AIT
-  twitter:
+  twitter: cini_valerio
   web: https://sites.google.com/view/valeriocini/home
   cv: "Valerios' main research interest lies in the field of modern cryptography in the direction of provable security. In particular he is involved/fascinated by the growing area/field of post-quantum cryptography (e.g. lattice based crypto) and its possible applications."
   pic: valerio_web.png
