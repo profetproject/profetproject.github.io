@@ -1,0 +1,16 @@
+---
+layout: post
+year: 2021
+title: "Post-Quantum Adaptor Signature for Privacy-Preserving Off-Chain Payments"
+authors: Erkan Tairi, Pedro Moreno-Sanchez, Matteo Maffei
+venue: "25th International Conference on Financial Cryptography and Data Security - FC 2021 (virtual)"
+vurl: https://fc21.ifca.ai/
+pdf: http://eprint.iacr.org/2020/1345.pdf
+web: http://eprint.iacr.org/2020/1345
+
+---
+
+
+---
+
+
