@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Three papers accepted at S&amp;P 2021 and USENIX SEC 2021"
+date:   2021-03-18
+description: Recently three papers got accepted for publication...
+---
+
+<p class="blockquote" align="justify">Recently three papers got accepted for publication at the <a href="https://www.ieee-security.org/TC/SP2021/" target="_blank">42nd IEEE Symposium on Security and Privacy – S&amp;P 2021</a> and at the <a href="https://www.usenix.org/conference/usenixsecurity21" target="_blank">30th USENIX Security Symposium – SEC 2021</a>. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a>.</p>
+
+<hr> 
