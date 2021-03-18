@@ -1,0 +1,19 @@
+---
+layout: post
+year: 2021
+title: "Bitcoin-Compatible Virtual Channels"
+authors:  Lukas Aumayr, Oguzhan Ersoy, Andreas Erwig, Sebastian Faust, Kristina Hostáková, Matteo Maffei, Pedro Moreno-Sanchez, Siavash Riahi
+venue: "42nd IEEE Symposium on Security and Privacy – S&P 2021 (virtual)"
+vatt: (accepted)
+vurl: https://www.ieee-security.org/TC/SP2021/
+pdf: https://eprint.iacr.org/2020/476.pdf
+web: https://eprint.iacr.org/2020/476
+
+
+
+---
+
+
+---
+
+

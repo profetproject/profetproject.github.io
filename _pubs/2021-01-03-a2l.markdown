@@ -1,0 +1,19 @@
+---
+layout: post
+year: 2021
+title: "A2L: Anonymous Atomic Locks for Scalability in Payment Channel Hubs"
+authors:  Erkan Tairi, Pedro Moreno-Sanchez, Matteo Maffei
+venue: "42nd IEEE Symposium on Security and Privacy – S&P 2021 (virtual)"
+vatt: (accepted)
+vurl: https://www.ieee-security.org/TC/SP2021/
+pdf: https://eprint.iacr.org/2019/589.pdf
+web: https://eprint.iacr.org/2019/589
+
+
+
+---
+
+
+---
+
+
