@@ -5,6 +5,7 @@ title: "Cross-Layer Deanonymization Methods in the Lightning Protocol"
 authors:  Matteo Romiti, Friedhelm Victor, Pedro Moreno-Sanchez, Peter Sebastian Nordholt, Bernhard Haslhofer, Matteo Maffei 
 venue: "25th International Conference on Financial Cryptography and Data Security - FC 2021 (virtual)"
 vurl: https://fc21.ifca.ai/
+web: https://arxiv.org/abs/2007.00764
 pdf: https://fc21.ifca.ai/papers/218.pdf
 
 
