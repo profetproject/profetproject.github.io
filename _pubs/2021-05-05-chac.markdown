@@ -1,0 +1,14 @@
+---
+layout: post
+year: 2021
+title: "With a Little Help from My Friends: Constructing Practical Anonymous Credentials"
+authors: Lucjan Hanzlik, Daniel Slamanig
+venue: "28th ACM Conference on Computer and Communications Security - ACM CCS 2021"
+vurl: https://www.sigsac.org/ccs/CCS2021/
+vatt: (accepted)
+
+---
+
+---
+
+

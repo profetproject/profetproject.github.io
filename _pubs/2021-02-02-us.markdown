@@ -6,6 +6,8 @@ authors: Valerio Cini, Sebastian Ramacher, Daniel Slamanig, Christoph Striecks, 
 venue: "24th International Conference on Practice and Theory of Public-Key Cryptography - PKC 2021 (virtual)"
 vurl: https://pkc.iacr.org/2021/
 vatt: (accepted)
+pdf: https://eprint.iacr.org/2021/365.pdf
+web: https://eprint.iacr.org/2021/365
 
 ---
 

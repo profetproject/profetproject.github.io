@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Paper accepted at ACM CCS 2021"
+date:   2021-03-24
+description: Recently a paper got accepted for publication...
+---
+
+<p class="blockquote" align="justify">Recently a paper got accepted for publication at the <a href="https://www.sigsac.org/ccs/CCS2021/" target="_blank">28th ACM Conference on Computer and Communications Security - ACM CCS 2021</a>. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a>.</p>
+
+<hr> 
