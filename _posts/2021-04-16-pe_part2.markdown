@@ -34,7 +34,7 @@ description: Part II/III of a series of blog posts on puncturable encryption.
 
 <figure>
   <a href="#img5" id="img5s">
-      <img src="/assets/img/table_fs-PKE-PE.png" width="742px" />
+      <img src="/assets/img/table_fs-PKE-PE.png" max-width="75%" width="75%" />
   </a>
   <!-- lightbox container hidden with CSS -->
   <a href="#img5s" class="lightbox" id="img5">
@@ -55,7 +55,7 @@ description: Part II/III of a series of blog posts on puncturable encryption.
 
 <figure>
   <a href="#img6" id="img6s">
-      <img src="/assets/img/table_PE-constructions.png" width="742px" />
+      <img src="/assets/img/table_PE-constructions.png" max-width="75%" width="75%" />
   </a>
   <!-- lightbox container hidden with CSS -->
   <a href="#img6s" class="lightbox" id="img6">
