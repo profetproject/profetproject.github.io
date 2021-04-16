@@ -1,0 +1,95 @@
+---
+layout: post
+title:  "Puncturable Encryption – A Fine-Grained Approach to Forward-Secure Encryption and More: Part II"
+date:   2021-04-16
+description: Part II/III of a series of blog posts on puncturable encryption.
+---
+
+<p align="justify"> In <a href="https://profet.at/blog/pe_part1/">Part I</a> of this blog series, we discussed why forward security for public-key encryption (PKE) is an important security property, but has limitations concerning synchronization and unprotected ciphertexts within an interval (or, epoch). In this part, we will cover how puncturable encryption (PE) makes the concept of forward security more fine-grained. In particular, we discuss how synchronization can be removed entirely and how ciphertexts within the same epoch for looser synchronization can be protected. Moreover, we reflect on state-of-the-art PE schemes.</p>
+
+<h3>Making Forward Security More Fine-Grained</h3>
+
+<p align="justify">We recall from <a href="https://profet.at/blog/pe_part1/">Part I</a> that if the switches between intervals in forward-secure public-key encryption (PKE) happen too frequently, it requires good synchronization, whereas for longer time intervals, a looser synchronization can be established. The latter is preferred and particularly interesting for many scenarios such as asynchronous messaging or for achieving 0-RTT forward-secure key exchange. It is, however, clear that in case of a looser synchronization, leaking a key might give access to many encrypted messages. Consequently, the achieved forward-security property using plain forward-secure PKE is very coarse-grained, i.e., a synchronized clock has to be maintained and the ciphertexts within the current interval are not protected.</p>
+
+<p align="justify">One way to mitigate this problem and make forward-secure PKE more fine-grained is to use puncturable encryption (PE), a cryptographic primitive introduced by Green and Miers <a href="#GM15">[GM15]</a>. The idea here is to provide a forward-security property that allows a secret key to be modified (or, &ldquo;punctured&rdquo;) on specific ciphertexts in a way that the resulting secret key will then no longer be useful to decrypt ciphertexts on which the key has been punctured already.</p>
+
+<p align="justify">Essentially, the ciphertexts in PE now carry a more general tag instead of the more specific time interval. The secret key can be punctured on that particular tag, thereby removing the ability of the secret key to decrypt such ciphertexts. See that this yields a more fine-grained approach to forward-secure PKE as one can specifically exclude decryption access from keys and removes the all-or-nothing restriction that old-interval ciphertexts cannot be decrypted anymore once the key is updated as in the CHK approach <a href="#CHK03">[CHK03]</a>. Furthermore, since puncturing happens on specific tags associated to ciphertexts, when tags are chosen accordingly (as discussed below) no synchronization is needed at all. In Figure 4, we illustrate the high-level idea behind the PE approach, where \((sk,\varepsilon)\) represents the initial unpunctured secret key.</p>
+
+<figure>
+  <a href="#img4" id="img4s">
+      <img src="/assets/img/PE_white.png" width="640px" />
+  </a>
+  <!-- lightbox container hidden with CSS -->
+  <a href="#img4s" class="lightbox" id="img4">
+      <span style="background-image: url('/assets/img/PE_white.png')"></span>
+  </a>
+  <figcaption>Figure 4: Puncturing the secret key on tags in puncturable encryption.</figcaption>
+</figure>
+
+<p align="justify">In the following, we want to discuss the main difference between forward-secure PKE with synchronization (as in <a href="#CHK03">[CHK03]</a>) and PE. Forward-secure PKE with synchronization is defined over intervals (or, epochs) and over some time-dependent input, while PE is defined over tags and, hence, over some tag-dependent input. In that sense, PE overcomes the need for synchronization required in forward-secure PKE, but has the limitation that message-suppression attacks (MSA) are possible. Such attacks allow the adversary to refrain the receiver from receiving ciphertexts and, hence, such ciphertexts cannot be used for puncturing the secret key in PE. Clearly, non-punctured ciphertexts can then be decrypted in case of a key leakage. For a a more detailed discussion on MSA, we refer to <a href="#BG20">[BG20]</a>.</p>
+
+<p align="justify">As a consequence, while forward-secure PKE with synchronization guarantees that old-interval ciphertexts cannot be decrypted anymore, PE ensures that all tag-dependent ciphertexts cannot be decrypted anymore if the secret key was punctured on such a tag already. PE is modular in the sense that if one uses tags from a small tag space, e.g., a tag space consisting of intervals, one obtains forward-secure PKE with synchronization. If tags are chosen uniformly at random from a small tag space, one removes the need for synchronization, but has to deal with collision in the tags and some ciphertexts that might not be decryptable anymore. Moreover, message-suppression attacks are possible. If tags are chosen uniformly at random from a large-enough tag space so that the probability of obtaining collision is negligible, one eliminates synchronization as well, but still one has to deal with message-suppression attacks.</p>
+
+<p align="justify">As it turns out, one can use the features of both, forward-secure PKE and PE, in combination. On the higher level, one has the notion of time with the desired property of only a loosely coupled synchronization to defend against message-suppression attacks. Furthermore, within intervals that can be made large enough, e.g., one day, one can puncture ciphertexts on tags to guarantee the forward-security property for already decrypted ciphertexts within that interval. Such combination yields fine-grained forward-secure PKE properties as desired by many applications which we will discuss in Part III. In Figure 5, we depict the discussed properties of forward-secure PKE with synchronization and PE.</p>
+
+<figure>
+  <a href="#img5" id="img5s">
+      <img src="/assets/img/table_fs-PKE-PE.png" width="640px" />
+  </a>
+  <!-- lightbox container hidden with CSS -->
+  <a href="#img5s" class="lightbox" id="img5">
+      <span style="background-image: url('/assets/img/table_fs-PKE-PE.png')"></span>
+  </a>
+  <figcaption>Figure 5: Overview of properties for forward-secure PKE with synchronization and PE.</figcaption>
+</figure>
+
+<h3>Constructions of Puncturable Encryption for Forward-Secure Public-Key Encryption</h3>
+
+<p align="justify">In the last years, we have seen quite some works on PE with various flavors starting from the initial work on PE <a href="#GM15">[GM15]</a>. The initial PE work uses non-monotonic attribute-based encryption (ABE), i.e., ABE that supports negations of attributes, to remove the decryption capabilities from secret keys for ciphertexts associated to one or more tags. Essentially, once a ciphertext is received, the secret key is punctured on the ciphertext's tag \(t\) by adding a &ldquo;NOT \(t\)&ldquo;-element to the updated secret key. That essentially means that ciphertexts with such a tag \(t\) cannot be decrypted by the updated secret key anymore. The secret key grows with the number of punctures, i.e, tags added, while the public key and ciphertexts enjoy compact sizes. Green and Miers further combined their PE scheme with the CHK-approach to achieve fine-grained forward-secure PKE for the asynchronous-messaging scenario they are targeting. This resulted in a forward-secure PKE scheme with loosely coupled synchronization over intervals while received ciphertexts within the intervals stay protected.</p>
+
+<p align="justify">In 2017, the initial work on PE was extended for the use in 0-RTT forward-secret key-exchange with replay protection <a href="#GHJL17">[GHJL17]</a>, a combination of properties unknown to be achievable at that time. Essentially, the authors showed how to construct fine-grained forward-secure PKE from any (selectively secure) HIBE. While their scheme now only required HIBEs and not the stronger form of ABE anymore, puncturing the secret keys is a very costly operation which could take seconds to minutes for appropriate tag spaces and reasonable implementations. The secret key now grows linearly in the number of punctures while the public key and ciphertexts are compact. As with the initial work on PE, this resulted in forward-secure PKE scheme with a loosely coupled synchronization over intervals while received ciphertexts within the intervals stay protected.</p>
+
+<p align="justify">A short time later, Bloom-Filter Encryption (BFE) was defined in <a href="#DJSS18">[DJSS18]</a> (and additional instantiations are given in <a href="#DGJSS21">[DGJSS21]</a>), where a large tag space of a PE scheme is shrinked to be polynomial in the security parameter using a <a href="https://en.wikipedia.org/wiki/Bloom_filter" target="_blank">Bloom Filter</a>, a probabilistic data structure for approximate set-membership tests. Puncturing secret keys now became very efficient and only consists of deleting parts of the secret key indexed by bits resulting from including the tag into the Bloom Filter. The secret-key sizes increase, though, and scale in the security parameter and the number of maximum punctures. Yet, the public key and the ciphertexts are of compact sizes. Essentially, the mapping to the Bloom Filter results in a non-negligible decryption error which is the trade-off for efficient secret-key puncturings. We discuss the application of BFE for 0-RTT forward-secret key-exchange in Part III.</p>
+
+<p align="justify">Inspired by BFE as an efficient PE primitive, the work in <a href="#CRSS20">[CRSS20]</a> recently showed how to obtain BFE generically from any identity-based encryption (IBE) scheme with non-negligible correctness error. This yielded a first step towards a post-quantum BFE instantiation. Another work <a href="#SDLP20">[SDLP20]</a> provides a post-quantum secure PE, based on a primitive called delegetable fully-key homomorphic encryption. It however cannot be considered puncture-efficient. Furthermore, in <a href="#SSSLG20">[SSSLG20]</a>, an approach to generically construct PE based on a variant of an identity-based revocation scheme was provided. It allows various instantiations in bilinear groups providing different trade-offs in sizes of keys and ciphertexts. At this point it becomes clear that there are various approaches to construct PE providing different trade-offs between sizes and efficiency. The choice of the most suitable one then heavily depends on the targeted application. In Figure 6, we give a comparison of state-of-the-art PE schemes.</p>
+
+<figure>
+  <a href="#img6" id="img6s">
+      <img src="/assets/img/table_PE-constructions.png" width="640px" />
+  </a>
+  <!-- lightbox container hidden with CSS -->
+  <a href="#img6s" class="lightbox" id="img6">
+      <span style="background-image: url('/assets/img/table_PE-constructions.png')"></span>
+  </a>
+  <figcaption>Figure 6: Comparison of state-of-the-art PE schemes.</figcaption>
+</figure>
+
+<h3>Variants of Puncturable Encryption</h3>
+
+<p align="justify">We now focus on PE schemes with enhanced puncturing features beyond the simple secret-key manipulation. The first line of works is fully PE (FuPE) <a href="#DKLRSS18">[DKLRSS18]</a> and forward-secure puncturable IBE (fs-PIBE) <a href="#WCWHM19">[WCWHM19]</a>. Within FuPE, ciphertexts are associated to separate tag spaces, i.e., to tags from a so-called positive and negative tag space, while decryption keys can be first associated to several negative tags and a final positive tag. In fs-PIBE on the other hand, ciphertexts are also associated to a positive and a negative tag while decryption keys can be first associated to one positive tag and afterwards to several negative tags. Here, negative tags are as in conventional PE, i.e., a secret key punctured on such a tag cannot decrypt a ciphertext carrying this tag, while a secret key punctured on a positive tag requires this tag to be present in the ciphertext to be able to decrypt. FuPE realized the first forward-secret proxy re-encryption (PRE) scheme while fs-PIBE has been shown to have applications to Cloud-hosted e-mail systems. </p>
+
+<p align="justify">The recent work in <a href="#DRSS21">[DRSS21]</a> enhanced those capabilities even further. In particular, their work allows to first associate the secret key with several negative tags, then with a positive tag, and afterwards with several further negative tags again, which yields new applications areas not yet covered by existing approaches such as an enhanced version of <a href="https://blog.cloudflare.com/geo-key-manager-how-it-works/" target="_blank">Cloudflare's Geo Key Manager</a>, forward-secure IBE and signatures. <a href="#DRSS21">[DRSS21]</a> also provides an abstraction via so-called allow-list/deny-list encryption that helps to classify PE schemes with such different types of puncturing functionality.</p>
+
+<p align="justify">Another recent work <a href="#SS21">[SS21]</a> extends the functionality of puncturing from secret keys only to also allow puncturing of ciphertexts via the notion of ciphertext-puncturable encryption (CPE). A CPE scheme can abstractly be viewed as a PE scheme with an additional algorithm to puncture ciphertexts. However, there are some significant differences compared to conventional PE. Ciphertext puncturing is no fully public and stand-alone operation, but requires so-called puncturing tokens to keep ciphertexts and public keys in synchronization. Overall, CPE gives rise to the first no-directional updatable encryption (UE) scheme.</p>
+
+<p align="justify">In the next blog post, we will discuss applications of puncturable encryption and an implementation. Check back on April 23th for Part III. If you have any comments, suggestions or questions, please feel free to contact us (<a href="https://twitter.com/CStriecks" target="_blank">@CStriecks</a>, <a href="https://twitter.com/sebastinas_" target="_blank">@sebastinas_</a>, <a href="https://twitter.com/drl3c7er" target="_blank">@drl3c7er</a>). </p>
+
+<h3>References</h3>
+
+<ul>
+  <li id="BG20">[BG20]: Colin Boyd, Kai Gellert: <a href="https://eprint.iacr.org/2019/1362" target="_blank">A Modern View on Forward Security</a>. The Computer Journal 2020.</li>
+  <li id="CHK03">[CHK03]: Ran Canetti, Shai Halevi, Jonathan Katz. <a href="https://eprint.iacr.org/2003/083"  target="_blank">A forward-secure public-key encryption scheme</a>. EUROCRYPT 2003. </li>
+  <li id="CRSS20">[CRSS20]: Valerio Cini, Sebastian Ramacher, Daniel Slamanig, Christoph Striecks: <a href="https://eprint.iacr.org/2020/1548">CCA-Secure (Puncturable) KEMs from Encryption With Non-Negligible Decryption Errors</a>. ASIACRYPT 2020.</li>
+  <li id="DGJSS21">[DGJSS18]: David Derler, Kai Gellert, Tibor Jager, Daniel Slamanig, Christoph Striecks: <a href="https://eprint.iacr.org/2018/199">Bloom Filter Encryption and Applications to Efficient Forward-Secret 0-RTT Key Exchange</a>. Journal of Cryptology 2021.</li>
+  <li id="DJSS18">[DJSS18]: David Derler, Tibor Jager, Daniel Slamanig, Christoph Striecks: <a href="https://eprint.iacr.org/2018/199">Bloom Filter Encryption and Applications to Efficient Forward-Secret 0-RTT Key Exchange</a>. EUROCRYPT 2018.</li>
+  <li id="DKLRSS18">[DKLRSS18]: David Derler, Stephan Krenn, Thomas Lorünser, Sebastian Ramacher, Daniel Slamanig, Christoph Striecks: <a href="https://eprint.iacr.org/2018/321">Revisiting Proxy Re-encryption: Forward Secrecy, Improved Security, and Applications</a>. PKC 2018.</li>
+  <li id="DRSS21">[DRSS21]: David Derler, Sebastian Ramacher, Daniel Slamanig, Christoph Striecks: <a href="https://eprint.iacr.org/2019/912">Fine-Grained Forward Secrecy: Allow-List/Deny-List Encryption and Applications</a>. Financial Cryptography 2021.</li>
+  <li id="GHJL17">[GHJL17]: Felix Günther, Britta Hale, Tibor Jager, Sebastian Lauer. <a href="https://eprint.iacr.org/2017/223"  target="_blank">0-RTT Key Exchange with Full Forward Secrecy</a>. EUROCRYPT 2017. </li>
+  <li id="GM15">[GM15]: Matthew D. Green, Ian Miers. <a href="https://isi.jhu.edu/~mgreen/forward_sec.pdf"  target="_blank">Forward Secure Asynchronous Messaging from Puncturable Encryption</a>. IEEE Symposium on Security & Privacy 2015. </li>
+  <li id="SDLP20">[SDLP20]: Willy Susilo, Dung Hoang Duong, Huy Quoc Le, Josef Pieprzyk. <a href="https://eprint.iacr.org/2020/882"  target="_blank">Puncturable Encryption: A Generic Construction from Delegatable Fully Key-Homomorphic Encryption</a>. ESORICS 2020. </li>
+  <li id="SS21">[SS21]: Daniel Slamanig, Christoph Striecks. <a href="https://eprint.iacr.org/2021/268"  target="_blank">Puncture ’Em All: Stronger Updatable Encryption with No-Directional Key Updates</a>. ePrint 2021. </li>
+  <li id="SSSLG20">[SSSLG20]: Shi-Feng Sun, Amin Sakzad, Ron Steinfeld, Joseph Liu, and Dawu Gu. <a href="https://eprint.iacr.org/2020/126"  target="_blank">Public-Key Puncturable Encryption: Modular and Compact Constructions</a>. PKC 2020. </li>
+  <li id="WCWHM19">[WCWHM19]: Jianghong Wei, Xiaofeng Chen, Jianfeng Wang, Xuexian Hu, Jianfeng Ma. <a href="https://link.springer.com/chapter/10.1007%2F978-3-030-29962-0_7"  target="_blank">Forward-Secure Puncturable Identity-Based Encryption for Securing Cloud Emails</a>. ESORICS 2019. </li>
+</ul>
+
+<hr> 

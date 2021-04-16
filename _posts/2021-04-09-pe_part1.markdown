@@ -23,26 +23,44 @@ description: Part I/III of a series of blog posts on puncturable encryption.
 
 <p align="justify">The idea is illustrated in Figure 1 below and it is important to note that ideally, the public and the secret keys are compact, i.e., at least only sub-linearly dependent and ideally independent of the maximum number of epochs. It is not hard to see that a scheme where the keys are linear in the size of the maximum number \(n\) of epochs is rather easy to devise. Therefore, we set the public key to be a sequence \((pk_1,\ldots,pk_n)\) of \(n\) independently generated public keys, use the \(i\)'th public key in epoch \(i\) and evolving the secret key to epoch \(i+1\) simply means deleting the \(i\)'th secret key. While such a scheme can work for very small \(n\), it soon gets impractical as \(n\) gets reasonably large. One way to compress the public key is to rely on identity-based encryption (IBE) by using, e.g., the Boneh-Franklin IBE <a href="#BF01I">[BF01]</a>, where the public key \(pk\) is independent but the secret keys \((sk_1,\ldots,sk_n)\) are linearly in the maximum number of epochs \(n\) (essentially, each epoch \(i\) has its own epoch-identity key \(sk_i\) and one encrypts towards &ldquo;identity&rdquo; \(i\)).</p>
 <figure>
-  <img src="/assets/img/fsPKE_white.png" width="640px" />
+    <a href="#img1" id="img1s">
+      <img src="/assets/img/fsPKE_white.png" width="640px" />
+  </a>
+  <!-- lightbox container hidden with CSS -->
+  <a href="#img1s" class="lightbox" id="img1">
+      <span style="background-image: url('/assets/img/fsPKE_white.png')"></span>
+  </a>
   <figcaption>Figure 1: Forward-secure public-key encryption.</figcaption>
 </figure>
 <p align="justify">Devising a scheme for virtually unbounded \(n\) with compact public and secret keys is more tricky and has for the first time been proposed by Canetti, Halevi and Katz (CHK) <a href="#CHK03">[CHK03]</a>. The basic idea is to rely on a binary tree-based approach and in particular the approach of hierarchical identity-based encryption (HIBE). Roughly speaking, in a HIBE, one encrypts for an identity \(id\) and from a compact main secret key one can derive secret keys for any identity. Having a secret key for some identity \(id\) allows to delegate the secret key for any identity with prefix \(id\). However, the other direction is not possible, i.e., one can only delegate for extended identities but not compute secret-key material for prefixes of them. As a more concrete example, let us assume a binary-identity space \(\{0,1\}^\ell\) (with \(\ell\) being the height of the binary tree). Now, having a secret key for identity \(0\) lets us compute a secret key for any identity \(0\{0,1\}^{\ell-1}\) while from a secret key for identity \(1\) we can derive a secret key for any identity \(1\{0,1\}^{\ell-1}\) (CHK actually use a relaxed version of a HIBE called binary-tree encryption (BTE), which however is basically a HIBE with the aforementioned identity space). <p>
 
 <p align="justify">In Figure 2, we provide an illustrative example of such a HIBE with identity space \(\{0,1\}^3\) and where the main secret key is denoted as \(sk^\varepsilon\). For a forward-secure PKE, let us now consider all the secret keys at the leaves to represent the epoch keys, i.e., we have eight epochs.</p>
 <figure>
-  <img src="/assets/img/tree.png" width="640px" />
+      <a href="#img2" id="img2s">
+      <img src="/assets/img/tree.png" width="640px" />
+  </a>
+  <!-- lightbox container hidden with CSS -->
+  <a href="#img2s" class="lightbox" id="img2">
+      <span style="background-image: url('/assets/img/tree.png')"></span>
+  </a>
   <figcaption>Figure 2: Binary tree of secret keys.</figcaption>
 </figure>
 <p align="justify">In the first epoch, all ciphertexts are now computed for identity \(000\) and initially the secret key (boxed) is \(sk^\varepsilon\) which allows to derive all secret keys in the tree. Let us now see what happens when we evolve the secret key to the next (second) epoch represented by identity \(001\), which we illustrate in Figure 3. The idea is that one stores as the secret key (boxed) all secret keys representing siblings on the path from the secret key of identity \(000\) to the root which allow to derive all the remaining secret keys and deletes the elements that would allow deriving the secret key for the identity of the previous epoch (i.e., \(sk^{000}\)). This procedure can now be repeated when evolving the secret key to the next epochs.</p>
 <figure>
-  <img src="/assets/img/tree_delete.png" width="640px" />
+        <a href="#img3" id="img3s">
+      <img src="/assets/img/tree_delete.png" width="640px" />
+  </a>
+  <!-- lightbox container hidden with CSS -->
+  <a href="#img3s" class="lightbox" id="img3">
+      <span style="background-image: url('/assets/img/tree_delete.png')"></span>
+  </a>
   <figcaption>Figure 3: Binary tree of secret key for the second epoch.</figcaption>
 </figure>
 <p align="justify">For a concrete instantiation, this typically means that the public key of the respective forward-secure PKE scheme is logarithmic in the maximum number of epochs and can be made constant using a random oracle (a significant improvement over the naive linear-sized example mentioned before), secret keys are logarithmic and the size of the ciphertext can ideally be constant when using a suitable HIBE scheme <a href="#BBG05">[BBG05]</a>.</p>
 
 <p align="justify">Obviously, if the switches between intervals happen too frequently, it requires good synchronization, whereas for longer time intervals, a looser synchronization (which is desirable) is sufficient. Nevertheless, the achieved forward-security property is very coarse-grained, i.e., in case of secret-key leakage, all ciphertexts within the current interval are not protected. </p>
 
-<p align="justify">In the next blog post, we will discuss how to add the fine-grained PE approach to forward-secure PKE and discuss state-of-the-art PE research. Check back on April 16th for Part II. If you have any comments, suggestions or questions, please feel free to contact us (<a href="https://twitter.com/drl3c7er" target="_blank">@drl3c7er</a>, <a href="https://twitter.com/CStriecks" target="_blank">@CStriecks</a>, <a href="https://twitter.com/sebastinas_" target="_blank">@sebastinas_</a>). </p>
+<p align="justify">In the next <a href="https://profet.at/blog/pe_part2/" target="_blank">blog post (Part II)</a>, we discuss how to add the fine-grained PE approach to forward-secure PKE and discuss state-of-the-art PE research. If you have any comments, suggestions or questions, please feel free to contact us (<a href="https://twitter.com/drl3c7er" target="_blank">@drl3c7er</a>, <a href="https://twitter.com/CStriecks" target="_blank">@CStriecks</a>, <a href="https://twitter.com/sebastinas_" target="_blank">@sebastinas_</a>). </p>
 
 <h3>References</h3>
 
