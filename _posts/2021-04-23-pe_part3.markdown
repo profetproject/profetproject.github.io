@@ -1,0 +1,360 @@
+---
+layout: post
+title:  "Puncturable Encryption – A Fine-Grained Approach to Forward-Secure Encryption and More: Part III"
+date:   2021-04-23
+description: Part III/III of a series of blog posts on puncturable encryption.
+---
+
+<p align="justify">
+    In <a href="https://profet.at/blog/pe_part1/">Part I</a> and <a href="https://profet.at/blog/pe_part2/">Part II</a>, we have so far seen why forward security is an important property and discussed the state-of-the-art of puncturable encryption. In the last part of our blog series, we will focus on the applications of puncturable encryption. Finally we will then dive into the details of a concrete implementation which helps to explore the properties of puncturable-encryption schemes.
+</p>
+
+<h3>Applications of Puncturable Encryption</h3>
+
+<p align="justify">
+  Puncturable encryption (PE) schemes have a number of applications that range from Transport Layer Security (TLS) to encrypted backups. First, we take a look at zero round trip time (0-RTT) key exchange protocols. Second, we explore Cloudflare's Geo Key Manager and how PE could enable both fine-grained access control and forward security. Third, we review the use of PE in SafetyPin, a system for encrypted mobile-device backups.
+</p>
+
+<h4>0-RTT Forward-Secure Key Exchange for TLS</h4>
+<p align="justify">
+    Transport Layer Security (TLS), with TLS 1.3 representing its most recent version, is one of the most widespread protocols for secure communication over untrusted networks. One of the core goals of TLS is to establish shared keys with Ephemeral Diffie-Hellman (EDH) to establish a forward-secure channel.
+</p>
+<p align="justify">
+    In TLS, keys are established during the so-called handshake which describes the initial phase of the protocol (cf. Figure 1). First, a client sends a <code>ClientHello</code> message announcing its supported TLS versions, algorithms, etc. This message already includes the client’s EDH key share. When the server receives the client's message, it replies with <code>ServerHello</code> message containing its key share. The server can already compute the shared secret from the EDH key exchange. The client, however, must wait until it received the server’s answer. Once both parties completed the EDH key exchange, the remaining handshake is already performed in an encrypted fashion. Thereby, TLS achieves a forward-secure key exchange but requires at least two messages.
+</p>
+<figure>
+    <pre style="font-size: 75%"><code>Client                                           Server
+
+Key  ^ ClientHello
+Exch | + key_share*
+     | + signature_algorithms*
+     | + psk_key_exchange_modes*
+     v + pre_shared_key*       -------->
+                                                  ServerHello  ^ Key
+                                                 + key_share*  | Exch
+                                            + pre_shared_key*  v
+                                        {EncryptedExtensions}  ^  Server
+                                        {CertificateRequest*}  v  Params
+                                               {Certificate*}  ^
+                                         {CertificateVerify*}  | Auth
+                                                   {Finished}  v
+                               <--------  [Application Data*]
+     ^ {Certificate*}
+Auth | {CertificateVerify*}
+     v {Finished}              -------->
+       [Application Data]      <------->  [Application Data]</code></pre>
+    <figcaption>Figure 1: The messages of a full TLS 1.3 handshake.</figcaption>
+</figure>
+<p align="justify">
+    TLS 1.3 added a new feature that allows clients and servers to perform a reduced handshake whenever they have already performed one full handshake before. Then, the client is already allowed to send encrypted data in its first message (cf. Figure 2). This is achieved by storing a shared secret at the end of the handshake on both clients and servers. If a client then decides to use this shared secret on the next connection as pre-shared secret key (PSK), the stored PSK is used to derive the secret keys required for encryption. Note though, that if this key leaks, confidentiality is no longer guaranteed for the data sent as part of the early data.
+</p>
+<figure>
+    <pre><code style="font-size: 75%">ClientHello
+         + early_data
+         + key_share*
+         + psk_key_exchange_modes
+         + pre_shared_key
+         (Application Data*)     -------->
+                                                         ServerHello
+                                                    + pre_shared_key
+                                                        + key_share*
+                                               {EncryptedExtensions}
+                                                       + early_data*
+                                                          {Finished}
+                                 <--------       [Application Data*]
+         (EndOfEarlyData)
+         {Finished}              -------->
+         [Application Data]      <------->        [Application Data]</code></pre>
+    <figcaption>Figure 2: The messages of a 0-RTT TLS 1.3 handshake with early data.</figcaption>
+</figure>
+<p align="justify">
+    As discussed above, EDH requires one round-trip. Only after the two shares have been exchanged, the shared key can be derived and thus a secure channel be established. Recent work has explored alternatives to the PSK-based approach to reduce the number of round trips. In particular, the possibility to reduce the complexity to zero round trips using PE or, more specifically, puncturable key encapsulation mechanisms (PKEM) has been investigated (cf [<a href="#GHJL17">GHJL17</a>, <a href="#DJSS18">DKLRSS18</a>]). In such a protocol, the client essentially encrypts a session key with respect to the public key of the server, and then sends it to the server. Thereby, the client can immediately start sending encrypted application data using the session key. The server decrypts the session key and can use the key as well. To achieve forward security, the secret key is punctured on the ciphertext. Consequently, the secret key is no longer able to decrypt ciphertexts from past sessions. Besides providing forward security, puncturing the key also provides replay protection. Besides TLS, these techniques can also be applied to QUIC [<a href="#DDGHJKNRW20">DDGHJKNRW20</a>].
+</p>
+<p align="justify">
+  This approach requires the public key of the server to be known beforehand by the client. While this is not an issue after the first connection, with the trend to store public keys in DNS entries to support new features such as <a href="https://blog.mozilla.org/security/2021/01/07/encrypted-client-hello-the-future-of-esni-in-firefox/" target="_blank">Encrypted Client Hello</a>, this requirement does not hinder deployment of 0-RTT forward-secure key exchange.
+</p>
+<p align="justify">
+  Forward-secure transport of early data can also be achieved by employing puncturable pseudo random functions (PPRF) [<a href="#AGJ19">AGJ19</a>]. For this approach, the idea is that client and server store a PPRF secret key on the first full handshake. When performing a session-resumption handshake with early data, this stored state is then used to derive forward-secure keys. Compared to the PKEM-based approach, both, client and server, need to puncture their PPRF keys.
+</p>
+
+<h4>Forward Security for the Geo Key Manager</h4>
+<p align="justify">
+As the use of TLS for securing communication on the Internet grows, content distribution networks (CDNs) such as Cloudflare face new key management issues: all of their endpoints terminating TLS connections deployed in colocations all over the world need access to the secret keys associated to the certificate (i.e., public key) to guarantee low latency. As those secret keys might belong to the customers, they need to provide the keys to the CDNs or deploy solutions such as <a href="https://www.cloudflare.com/ssl/keyless-ssl/" target="_blank">Keyless SSL</a>, where customers are required to run their own keyserver answering signing requests from the CDN. The latter comes at the cost of higher latency if endpoints or users are not close to the location of the key server. The former faces a different issue since due to various differences in local laws or other regulations surrounding the use of secret keys, customers might not be interested in having their keys exposed to certain locations and areas.
+</p>
+<p align="justify">Cloudflare's <a href="https://blog.cloudflare.com/geo-key-manager-how-it-works/" target="_blank">Geo Key Manager</a> tackles this issue by giving customers the control on the locations their secret keys are stored when shared with Cloudflare (cf. Figure 3). Effectively, customers are able to put whole regions on allow-lists, e.g., Europe or the US. At the same time, they are able to put multiple colocations within those regions, e.g., London in Europe, on deny-lists. Finally, they are also able to directly put colocations on the allow-list that are not inside the regions already on allow-lists, e.g., Singapore. The currently used system combines identity-based broadcast encryption (IBBE) as well as identity-based revocation (IBR), but does not offer forward-security guarantees. Hence, if the keys of any colocation leak, the customer's secret keys are in danger of being leaked as well.
+</p>
+<figure >
+<a href="#img33" id="img33s">
+    <img src="/assets/img/210422_fsPKE_geo_white_v2.png" width="640px" />
+</a>
+<!-- lightbox container hidden with CSS -->
+<a href="#img33s" class="lightbox" id="img33">
+    <span style="background-image: url('/assets/img/210422_fsPKE_geo_white_v2.png')"></span>
+</a>
+<figcaption>Figure 3: Access control via allow-listing of regions (here, EU) and deny-listing of colocations (here, London).</figcaption>
+</figure>
+<p align="justify">
+  One can now obtain the same functionality also from PE schemes that support both negative and positive puncturing (cf. [<a href="#DRSS21">DRSS21</a>]). The idea is to manage region-based access using positive tags and denial of individual colocations by puncturing on unique negative tags assigned to each colocation. Next, one would derive keys for each region by using the name of the region as positive tag. Each colocation is assigned a unique negative tag and hence they receive the secret key positively punctured on the region and negatively punctured on that colocation specific tag. If customers now want to store their secret key, they encrypt the key for each allowed region using the region as positive tag and the denied colocations of the corresponding region as negative tags. If a colocation needs to access the key, it can only decrypt if one of the ciphertexts was encrypted for the region and that particular ciphertext was not tagged with the negative tag of the colocation. They are unable to decrypt ciphertexts for other regions, since they do not have access to the positively tagged keys.
+</p>
+<p>
+  If the PE scheme supports puncturing with respect to multiple negative tags, one can achieve even more. In that case, one can additionally obtain forward security as an additional feature. The tag space can be partitioned into one part containing the colocation (i.e., negative) tags, and another part identifying time periods by viewing this part as ordered sequence. Thereby, customers can specify a time epoch as additional negative tag, say <tt>2021-04</tt> for ciphertexts decryptable in April 2021. Once the month passed, all colocations puncture the secret keys on the month's tag and are then no longer able to decrypt those ciphertexts.
+</p>
+
+<h4>Bloom-Filter Encryption in SafetyPin</h4>
+
+<p align="justify">
+  SafetyPin [<a href="#DCM20">DCM20</a>] is a system for encrypted backups of mobile devices which uses only (short-digit) PINs at the user's side and several hardware security modules (HSMs) protecting user data at the server's side. No single HSM is capable of retrieving all the user data. Essentially, the motivation is that if one backups mobile-device data to the Cloud, one does not want the Cloud provider to gain access to it. The current state of the art (as used by Google for example) is to use a HSM which has public and secret keys (\(pk_{HSM},sk_{HSM}\)) with \(sk_{HSM}\) baked into the HSM and thus even the Cloud provider cannot access it. Now, for a backup, one encrypts a PIN and a symmetric key \(k_{SYM}\) under the public key \(pk_{HSM}\) of the HSM as \(C_{B}=Enc(pk_{HSM},PIN|k_{SYM})\) and also sends the backup data encrypted under \(k_{SYM}\) as \(E(k_{SYM},data)\) to the Cloud provider.
+</p>
+<p align="justify">
+  When one has lost the mobile device and wants to recover the backup to a new device, one send the PIN under the HSM public key \(pk_{HSM}\) to the Cloud provider as \(C_{R}=Enc(pk_{SYM},PIN)\). The Cloud provider sends both, \(C_{B}\) and \(C_{R}\) to the HSM which decrypts and compares the PINs. If the PINs match and only a limited number of trials was performed, then \(k_{SYM}\) is returned to the user, which then allows to decrypt the backup data. In any case, the HSM can be seen as a single point of failure (and attacks on HSMs are reasonable <a href="https://cryptosense.com/blog/how-ledger-hacked-an-hsm" target="_blank">and happening</a>).
+</p>
+<p align="justify">
+   SafetyPin now mainly does two things. First, retain the scalability offered by today's (PIN-based) mobile backup systems and, second, protect against HSM compromises. This can be solved by applying threshold cryptography and in particular secret sharing in a way that some pre-defined number of HSMs out of all the HSMs are needed to recover the backup. Below a certain threshold of HSMs, no data is leaked. However, during recovery, the adversary can observe which HSMs were used and particularly target those subset of HSMs.
+</p>
+<p align="justify">
+   To mitigate such attack, the authors make use of puncturable encryption and in particular Bloom-Filter Encryption (BFE) to protect against future compromises. Interestingly, as we have seen, secret keys are large in BFE and usually will not fit into a small HSM. The authors cleverly outsource the puncturing of the secret key in a tree-like structure to the Cloud such that only logarithmically many read-and-write accesses are necessary to update the key, which yields very efficient puncturing. Moreover, this results in a very short key the HSM has to hold while achieving forward-security guarantees at the same time.
+</p>
+<p align="justify">
+  We recommend to watch the excellent talk by Henry Corrigan-Gibbs given at the <a href="https://visp.wien/lecture-series">ViSP Distinguished Lecture Series</a> [<a href="#C21">C21</a>] on SafetyPin.
+</p>
+
+<h3>Implementation of Bloom-Filter Encryption</h3>
+<p align="justify">
+  Finally, let us look at an implementation of a concrete PE scheme. In particular, we will demonstrate the use of Bloom-Filter Encryption (BFE) [<a href="#DJSS18">DJSS18</a>,<a href="DGJSS21">DGJSS21</a>] for forward-secure 0-RTT key exchange protocols. The example demonstrates how BFE can be used to establish a shared secret between a client and a server that is based on the BFE implementation available as part of <a href="https://github.com/sebastinas/pyrelic" target="_blank">pyrelic</a>. We note that strictly speaking, we realize a Bloom-filter key encapsulation mechanisms (BFKEMs), but will call it BFE for the sake of simplicity.
+</p>
+<p align="justify">
+  First, we have to select parameters for the <a href="https://en.wikipedia.org/wiki/Bloom_filter" target="_blank">Bloom filter</a>. Let us assume that we have a server that has to handle one new connection per second. If we want the server's public key to last for three months, a possible choice for the size of the Bloom filter is \(n = 524288 = 2^{19}\) with a false-positive probability of \(p \approx 2^{-10}\) (corresponding to the decryption error in BFE). Now, we can use the <code>keygen</code> function to generate a new key-pair for this choice of parameters:
+</p>
+<pre><code class="language-python">import bfe
+
+# Generate a key-pair
+sk, pk = bfe.keygen(
+    32,  # size of shared secret key
+    2 ** 19,  # Bloom-filter size
+    0.0009765625,  # false-positive probability
+)</code></pre>
+<p align="justify">
+The key generation is the most expansive part of this scheme and will require some minutes to finish. Once it has completed, the public key <code>pk</code> can be shared with the clients. If a client now wants to establish a new connection with the server, it needs to encapsulate a new secret key:
+</p>
+<pre><code class="language-python"># Encapsulate a new key
+k, ctxt = bfe.encaps(pk)</code></pre>
+The freshly sampled secret key <code>k</code> can now be used to derive keys for an authenticated encryption scheme such as AES-GCM:
+<pre><code class="language-python">import os
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+
+# Encrypt a message using AES-GCM
+data = b"a secret message"
+aad = b"authenticated but unencrypted data"
+nonce = os.urandom(12)
+ct = AESGCM(k).encrypt(nonce, data, aad)</code></pre>
+<p align="justify">
+    The BFE ciphertext <code>ctxt</code> together with the encrypted message <code>ct</code> and the nonce can now be sent to the server. Note that the client does not need to wait for a reply of the server before encrypting its first message.
+</p>
+<p align="justify">
+    The server at some point receives the data from the client and decapsulates the BFE ciphertext to obtain the shared secret:
+</p>
+<pre><code class="language-python"># Decapsulate the key
+received_k = bfe.decaps(sk, ctxt)</code></pre>
+<p align="justify">
+    The most important step is however still missing: the secret key needs to be punctured on the received ciphertext. Only after puncturing <code>sk</code>, forward security is ensured:
+</p>
+<pre><code class="language-python"># Puncture the secret key on ciphertext
+bfe.puncture(sk, ctxt)</code></pre>
+<p align="justify">
+    Decapsulation of the same ciphertext fails after this step. Furthermore, it should be noted that after puncturing, all copies of the key have to be updated. If the old version of the key is kept in a backup or somewhere else in memory, an attacker could potentially obtain an old unpunctured key which voids the security guarantees.
+</p>
+<p align="justify">
+    Finally, the received shared secret can now be used to decrypt the messages sent by the client:
+</p>
+<pre><code class="language-python"># Decrypt the message
+received_data = AESGCM(received_k).decrypt(nonce, ct, aad)</code></pre>
+<p align="justify">
+    Now that we know how to use the scheme, let us take a deeper look into its <a href="https://github.com/sebastinas/pyrelic/blob/e2a582126f6e6d4e1b282561941fd348840ef714/examples/bfe.py" target="_blank">implementation</a>. For the functions that we do not cover in full detail, please take a look at the example available in pyrelic. Without further ado, let's dive into the details. We require three ingredients to implement the BFE:
+</p>
+<ul>
+  <li><em>Boneh-Franklin IBE [<a href="#BF01">BF01</a>]:</em> The choice of the identity-based encryption (IBE) scheme is central to the instantiation of the BFE scheme.</li>
+  <li><em>Bloom filter:</em> The Bloom filter is required to manage the secret key. We associate an identity of the IBE to each bit index in the Bloom filter.</li>
+  <li><em>Fujisaki-Okamoto transform [<a href="#FO99">F099</a>]:</em> We use the FO-transform to achieve CCA security.</li>
+</ul>
+<p align="justify">
+    As the scheme uses bilinear groups, we note that the description in [<a href="#DJSS18">DJSS18</a>] uses multiplicative notation for the group operations. Hence, we present the implementation using the multiplicative interface from pyrelic.
+</p>
+<p align="justify">
+    Let us start with the key generation. Recall that a Bloom filter defines a set of hash functions that map elements to an index. Whenever an element is inserted into the Bloom filter, all the bits returned by the hash function will be set. Checking if an element is contained in the set consists of checking whether all bits returned by the hash function are set. In the BFE scheme, we associate an identity of the IBE to each bit in the Bloom filter. Hence, during key generation, the BFE keys are produced by outputting the IBE's public key and derived keys for each bit of the Bloom filter as secret key and the main secret key of the IBE is discarded (cf. Figure 4).
+</p>
+<figure>
+    <a href="#img34" id="img34s">
+        <img src="/assets/img/bfekeygen.png" width="640px" />
+    </a>
+    <!-- lightbox container hidden with CSS -->
+    <a href="#img34s" class="lightbox" id="img34">
+        <span style="background-image: url('/assets/img/bfekeygen2.png')"></span>
+    </a>
+    <figcaption>Figure 4: \(\mathsf{KGen}\) algorithm of the BFE scheme.</figcaption>
+</figure>
+<p align="justify">
+    Consequently, we require an implementation of the hash function \(G\) which is provided in <code>map_identity</code> and \(\mathsf{KGen}\) itself:
+</p>
+<pre><code class="language-python">def map_identity(identity: int) -> G2:
+    return hash_to_G2(struct.pack("&lt;Q", identity))
+
+def keygen(
+    key_size: int,
+    filter_size: int,
+    false_positive_probability: float
+) -> Tuple[PrivateKey, PublicKey]:
+    exponent = rand_BN_order()  # BF secret key
+    pk = generator_G1(exponent)  # BF public key
+    bloom_filter = BloomFilter(
+        filter_size,
+        false_positive_probability
+    )
+
+    return (
+        PrivateKey(
+            bloom_filter,
+            # extract derived keys for all identities
+            [
+                map_identity(identity) ** exponent
+                for identity in range(bloom_filter.bitset_size)
+            ],
+            key_size,
+            pk,
+        ),
+        PublicKey(bloom_filter, key_size, pk),
+    )</code></pre>
+<p align="justify">
+    The <a href="https://github.com/sebastinas/pyrelic/blob/e2a582126f6e6d4e1b282561941fd348840ef714/examples/bfe.py#L50" target="_blank"><code>BloomFilter</code></a> class computer the optimal number of hash functions based on the size of the Bloom filter \(n\) and the false-positive probability \(p\). It also provides the mapping of elements to its bit indices. When a bit is set in the Bloom filter, we will remove the corresponding key from the array stored in the <a href="https://github.com/sebastinas/pyrelic/blob/e2a582126f6e6d4e1b282561941fd348840ef714/examples/bfe.py#L82" target="_blank"><code>PrivateKey</code></a> instance. Conversely, checking if a key is available for an index can be done by checking if the array contains a key or is unset.
+</p>
+<p align="justify">
+    Before we come to encapsulation and decapsulation, we need a method to select the identities. Note that an BFE ciphertext consists of \((g_1^r, E(e(pk, G(id))^r) \oplus K)\) for a freshly sampled \(r\) where \(E: G_T \to \{ 0, 1 \}^\ell\) is a hash function. The idea is now to use the first component, i.e. \(u = g_1^r\), as elements that are used to derived the identities, or in other words, which are collected in the Bloom filter. By hashing \(g_1^r\) with the hash functions associated to the Bloom filter we obtain all the identities.
+</p>
+<p align="justify">
+    Now let's look at encapsulation and decapuslation. Figure 5 depicts both algorithms as well as the FO transform applied to BFE. The idea here is to first compute \(u\), then use \(u\) to derive the identities. By reusing the same randomness \(r\) for all derived identities, we then produce all \(E(e(pk, G(id))^r) \oplus K\).
+</p>
+<figure>
+    <a href="#img341" id="img341s">
+        <img src="/assets/img/bfeenc.png" width="640px" /><br />
+    </a>
+    <!-- lightbox container hidden with CSS -->
+    <a href="#img341s" class="lightbox" id="img341">
+        <span style="background-image: url('/assets/img/bfeenc2.png')"></span>
+    </a>
+    <a href="#img342" id="img342s">
+        <img src="/assets/img/bfedec.png" width="640px" /><br />
+    </a>
+    <!-- lightbox container hidden with CSS -->
+    <a href="#img342s" class="lightbox" id="img342">
+        <span style="background-image: url('/assets/img/bfedec2.png')"></span>
+    </a>
+    <a href="#img343" id="img343s">
+        <img src="/assets/img/bfefo.png" width="640px" /><br />
+    </a>
+    <!-- lightbox container hidden with CSS -->
+    <a href="#img343s" class="lightbox" id="img343">
+        <span style="background-image: url('/assets/img/bfefo2.png')"></span>
+    </a>
+    <figcaption>Figure 5: \(\mathsf{Enc}, \mathsf{Dec}\) algorithms of the BFE scheme together with the FO-transform.</figcaption>
+</figure>
+<p align="justify">
+    \(R\) used in the FO transform is implemented as <a href="https://github.com/sebastinas/pyrelic/blob/e2a582126f6e6d4e1b282561941fd348840ef714/examples/bfe.py#L138" target="_blank"><code>hash_r</code></a>. The function <a href="https://github.com/sebastinas/pyrelic/blob/e2a582126f6e6d4e1b282561941fd348840ef714/examples/bfe.py#L150" target="_blank"><code>hash_and_xor</code></a> implements \(E(y) \oplus K\). Implementation-wise, there is an opportunity to optimize some of the operations. The scheme computes the input to \(E\) as \(e(pk, G(id))^r)\). Instead of performing the exponentiation with \(r\) in the target group, the computation can be rewritten as \(e(pk^r, G(id))\) which exchanges one exponentiation in the source group with multiple exponentiations in the target group. Let's take a look at the code:
+</p>
+<pre><code class="language-python">def encaps(pk: PublicKey) -> Tuple[bytes, Ciphertext]:
+    # sample a random value for FO
+    key = os.urandom(pk.key_size)
+    # derive r and k
+    r, k = hash_r(key, pk.key_size)
+
+    u = generator_G1(r)
+    # instead of applying r to each pairing, precompute pk ** r
+    pkr = pk.pk ** r
+
+    return k, Ciphertext(
+        u,
+        tuple(
+            hash_and_xor(pair(pkr, map_identity(identity)), key)
+            for identity in get_bit_positions(
+                bytes(u),
+                pk.hash_count,
+                pk.filter_size
+            )
+        ),
+    )</code></pre>
+<p align="justify">
+    <!-- Observe that we also applied the FO transform by first sampling a random bit string and then deriving all the other values from that. -->
+    For decapsulation, we start of by deriving all the identities from the received \(u\). We then check if the secret key contains the derived key associated to any of these identities. If there is one, this key is used to decrypt the corresponding ciphertext component:
+</p>
+<pre><code class="language-python">def decaps(sk: PrivateKey, ctxt: Ciphertext) -> Optional[bytes]:
+    # obtain key from one of the ciphertexts
+    key: Optional[bytes] = None
+    bit_positions = sk.bloom_filter.get_bit_positions(
+        bytes(ctxt.u)
+    )
+    for v, identity in zip(ctxt.v, bit_positions):
+        # check if key is available for the identity
+        if identity in sk:
+            key = hash_and_xor(pair(ctxt.u, sk[identity]), v)
+            break
+    else:
+        return None
+
+    # if we were able to decrypt a key, recompute r, k and the
+    # ciphertext as in encaps and check that it matches
+    ...</code></pre>
+<p align="justify">
+    The last function that we have to implement is the puncturing itself. In the BFE scheme, this means that if we want punctures the secret key on a ciphertext, \(u\) is inserted into the Bloom filter and all derived keys associated to the identities are deleted (see Figure 6).
+</p>
+<figure>
+    <a href="#img36" id="img36s">
+        <img src="/assets/img/bfepunc.png" width="640px" />
+    </a>
+    <!-- lightbox container hidden with CSS -->
+    <a href="#img36s" class="lightbox" id="img36">
+        <span style="background-image: url('/assets/img/bfepunc2.png')"></span>
+    </a>
+    <figcaption>Figure 6: \(\mathsf{Punc}\) algorithm of the BFE scheme.</figcaption>
+</figure>
+<p align="justify">
+    For our implementation, this means that we just have to delete the corresponding entry in the array kept in the secret key:
+</p>
+<pre><code class="language-python">class PrivateKey:
+    def __delitem__(self, identity: int) -> None:
+        key = self.secret_keys[identity]
+        if key is not None:
+            # remove key from the array
+            self.secret_keys[identity] = None
+            key.set_neutral() # clear key
+            del key
+
+    ...
+
+def puncture(sk: PrivateKey, ctxt: Ciphertext) -> None:
+    for identity in sk.bloom_filter.get_bit_positions(
+        bytes(ctxt.u)
+    ):
+        del sk[identity]  # remove the associated secret key</code></pre>
+<p align="justify">
+    Note, however, that if there are copies of the secret key, all copies have to updated in the same way. Otherwise, the security guarantees obtained from puncturing a single copy are voided. The same care has to be taken if the secret key is stored in a file, for example. During the puncturing process, this copy would need to be updated as well.
+</p>
+
+<p align="justify">
+    This concludes our blog series on puncturable encryption. If you have any comments, suggestions or questions, please feel free to contact us (<a href="https://twitter.com/sebastinas_">@sebastinas_</a>, <a href="https://twitter.com/drl3c7er">@drl3c7er</a>, <a href="https://twitter.com/CStriecks">@CStriecks</a>).
+</p>
+
+
+<h3>References</h3>
+
+<ul>
+  <li id="AGJ19">[AGJ19]: Nimrod Aviram, Kai Gellert, Tibor Jager: <a href="https://eprint.iacr.org/2019/228" target="_blank">Session Resumption Protocols and Efficient Forward Security for TLS 1.3 0-RTT</a>. EUROCRYPT 2019.</li>
+  <li id="BF01">[BF01]: Dan Boneh, Matthew K. Franklin: <a href="https://eprint.iacr.org/2001/090" target="_blank">Identity-Based Encryption from the Weil Pairing</a>. CRYPTO 2001.</li>
+  <li id="C21">[C21]: Henry Corrigan-Gibbs: <a href="https://www.youtube.com/watch?v=NbAhG5Yts1c" target="_blank">SafetyPin: Encrypted Backups with Human-Memorable Secrets</a>. Youtube 2021.</li>
+  <li id="DCM20">[DCM20]: Emma Dauterman, Henry Corrigan-Gibbs, David Mazières: <a href="https://arxiv.org/abs/2010.06712" target="_blank">SafetyPin: Encrypted Backups with Human-Memorable Secrets</a>. OSDI 2020.</li>
+  <li id="DDGHJKNRW20">[DDGHJKNRW20]: Fynn Dallmeier, Jan P. Drees, Kai Gellert, Tobias Handirk, Tibor Jager, Jonas Klauke, Simon Nachtigall, Timo Renzelmann, Rudi Wolf: <a href="https://eprint.iacr.org/2020/824" target="_blank">Forward-Secure 0-RTT Goes Live: Implementation and Performance Analysis in QUIC</a>. CANS 2020.</li>
+  <li id="DGJSS21">[DGJSS21]: David Derler, Kai Gellert, Tibor Jager, Daniel Slamanig, Christoph Striecks: <a href="https://eprint.iacr.org/2018/199">Bloom Filter Encryption and Applications to Efficient Forward-Secret 0-RTT Key Exchange</a>. Journal of Cryptology 2021.</li>
+  <li id="DJSS18">[DJSS18]: David Derler, Tibor Jager, Daniel Slamanig, Christoph Striecks: <a href="https://eprint.iacr.org/2018/199" target="_blank">Bloom Filter Encryption and Applications to Efficient Forward-Secret 0-RTT Key Exchange</a>. EUROCRYPT 2018.</li>
+  <li id="DRSS21">[DRSS21]: David Derler, Sebastian Ramacher, Daniel Slamanig, Christoph Striecks: <a href="https://eprint.iacr.org/2019/912" target="_blank">Fine-Grained Forward Secrecy: Allow-List/Deny-List Encryption and Applications</a>. Financial Cryptography 2021.</li>
+  <li id="FO99">[FO99]: Eiichiro Fujisaki, Tatsuaki Okamoto: <a href="https://link.springer.com/chapter/10.1007%2F3-540-48405-1_34" target="_blank">Secure Integration of Asymmetric and Symmetric Encryption Schemes</a>. CRYPTO 1999.</li>
+  <li id="GHJL17">[GHJL17]: Felix Günther, Britta Hale, Tibor Jager, Sebastian Lauer. <a href="https://eprint.iacr.org/2017/223"  target="_blank">0-RTT Key Exchange with Full Forward Secrecy</a>. EUROCRYPT 2017. </li>
+</ul>
+
+<hr> 

@@ -72,7 +72,7 @@ description: Part II/III of a series of blog posts on puncturable encryption.
 
 <p align="justify">Another recent work <a href="#SS21">[SS21]</a> extends the functionality of puncturing from secret keys only to also allow puncturing of ciphertexts via the notion of ciphertext-puncturable encryption (CPE). A CPE scheme can abstractly be viewed as a PE scheme with an additional algorithm to puncture ciphertexts. However, there are some significant differences compared to conventional PE. Ciphertext puncturing is no fully public and stand-alone operation, but requires so-called puncturing tokens to keep ciphertexts and public keys in synchronization. Overall, CPE gives rise to the first no-directional updatable encryption (UE) scheme.</p>
 
-<p align="justify">In the next blog post, we will discuss applications of puncturable encryption and an implementation. Check back on April 23th for Part III. If you have any comments, suggestions or questions, please feel free to contact us (<a href="https://twitter.com/CStriecks" target="_blank">@CStriecks</a>, <a href="https://twitter.com/sebastinas_" target="_blank">@sebastinas_</a>, <a href="https://twitter.com/drl3c7er" target="_blank">@drl3c7er</a>). </p>
+<p align="justify">In the next <a href="https://profet.at/blog/pe_part2/" target="_blank">blog post (Part III)</a>, we discuss applications of puncturable encryption and an implementation. If you have any comments, suggestions or questions, please feel free to contact us (<a href="https://twitter.com/CStriecks" target="_blank">@CStriecks</a>, <a href="https://twitter.com/sebastinas_" target="_blank">@sebastinas_</a>, <a href="https://twitter.com/drl3c7er" target="_blank">@drl3c7er</a>). </p>
 
 <h3>References</h3>
 
