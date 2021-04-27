@@ -5,7 +5,7 @@
   web: https://danielslamanig.info
   cv: "Daniels' main research interests are in the field of cryptography and privacy with a focus on practical public key cryptographic primitives, privacy-preserving cryptography, 
   their foundations and their applications in emerging fields such as cloud computing and the Internet of Things (IoT)."
-  pic: daniel_web2.png
+  pic: daniel_web.png
 
 - name: Matteo Maffei
   role: Co-PI
@@ -25,7 +25,7 @@
   cv: "Christophs' research focus lies mainly in the field of modern cryptographic building blocks, in particular, in form of identity-based  
   and attribute-based encryption as well as digital signatures. On the application level, he is mainly interested in modern connected systems with an 
   emphasis on enhanced security features (e.g., forward secrecy) and resource-asymmetric devices (e.g., the Internet of Things)."
-  pic: christoph_web.jpg   
+  pic: christoph_web.png   
 
 
 - name: Valerio Cini
