@@ -1,0 +1,14 @@
+---
+layout: post
+year: 2021
+title: "Privacy-Preserving Authenticated Key Exchange: Stronger Privacy and Generic Constructions"
+authors: Sebastian Ramacher, Daniel Slamanig, Andreas Weninger
+venue: "26th European Symposium on Research in Computer Security - ESORICS 2021"
+vurl: https://esorics2021.athene-center.de/
+vatt: (accepted)
+
+---
+
+---
+
+
