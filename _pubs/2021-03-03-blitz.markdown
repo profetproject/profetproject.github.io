@@ -4,7 +4,6 @@ year: 2021
 title: "Blitz: Secure Multi-Hop Payments Without Two-Phase Commits"
 authors: Lukas Aumayr, Pedro Moreno-Sanchez, Aniket Kate, Matteo Maffei
 venue: "30th USENIX Security Symposium – SEC 2021  (virtual)"
-vatt: (accepted)
 vurl: https://www.usenix.org/conference/usenixsecurity21
 pdf: https://eprint.iacr.org/2021/176.pdf
 web: https://eprint.iacr.org/2021/176
