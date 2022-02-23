@@ -5,7 +5,10 @@ title: "With a Little Help from My Friends: Constructing Practical Anonymous Cre
 authors: Lucjan Hanzlik, Daniel Slamanig
 venue: "28th ACM Conference on Computer and Communications Security - ACM CCS 2021"
 vurl: https://www.sigsac.org/ccs/CCS2021/
-vatt: (accepted)
+pdf: https://eprint.iacr.org/2021/1419.pdf
+web: https://eprint.iacr.org/2021/1419
+bib: https://dblp.org/rec/conf/ccs/HanzlikS21.html?view=bibtex
+pub: https://doi.org/10.1145/3460120.3484582
 
 ---
 

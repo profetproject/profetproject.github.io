@@ -8,6 +8,8 @@ vurl: https://pkc.iacr.org/2021/
 vatt: (accepted)
 pdf: https://eprint.iacr.org/2021/365.pdf
 web: https://eprint.iacr.org/2021/365
+bib: https://dblp.org/rec/conf/pkc/CiniRSST21.html?view=bibtex
+pub: https://doi.org/10.1007/978-3-030-75245-3_25
 
 ---
 

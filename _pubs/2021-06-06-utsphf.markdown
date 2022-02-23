@@ -5,7 +5,10 @@ title: "Updatable Trapdoor SPHFs: Modular Construction of Updatable Zero-Knowled
 authors: Behzad Abdolmaleki, Daniel Slamanig
 venue: "26th Australasian Conference on Information Security and Privacy - ACISP 2021"
 vurl: https://data61dsslab.github.io/acisp2021/
-vatt: (accepted)
+pdf: https://eprint.iacr.org/2021/1360.pdf
+web: https://eprint.iacr.org/2021/1360
+bib: https://dblp.org/rec/conf/acisp/AbdolmalekiS21.html?view=bibtex
+pub: https://doi.org/10.1007/978-3-030-90567-5_3
 
 ---
 

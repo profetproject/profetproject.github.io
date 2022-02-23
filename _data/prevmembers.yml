@@ -1,0 +1,55 @@
+- name: Daniel Slamanig
+  role: PI
+  institute: AIT
+  twitter: drl3c7er
+  web: https://danielslamanig.info
+  cv: "Daniels' main research interests are in the field of cryptography and privacy with a focus on practical public key cryptographic primitives, privacy-preserving cryptography, 
+  their foundations and their applications in emerging fields such as cloud computing and the Internet of Things (IoT)."
+  pic: daniel_web.png
+
+- name: Matteo Maffei
+  role: Co-PI
+  institute: TU Wien
+  twitter: matteo_maffei
+  web: https://secpriv.tuwien.ac.at/team/matteo/
+  cv: "Matteos' research interests concentrate on formal methods for the verification of security and privacy properties, with a specific focus on web, mobile, and 
+  cryptographic applications, and applied cryptography, in particular privacy-preserving solutions for outsourced storage, analytics, distributed computation, 
+  and blockchain."
+  pic: matteo_web.png
+
+- name: Christoph Striecks
+  role: Postdoc
+  institute: AIT 
+  twitter: CStriecks
+  web: https://cstriecks.github.io/
+  cv: "Christophs' research focus lies mainly in the field of modern cryptographic building blocks, in particular, in form of identity-based  
+  and attribute-based encryption as well as digital signatures. On the application level, he is mainly interested in modern connected systems with an 
+  emphasis on enhanced security features (e.g., forward secrecy) and resource-asymmetric devices (e.g., the Internet of Things)."
+  pic: christoph_web.png   
+
+
+- name: Valerio Cini
+  role: PhD Student
+  institute: AIT
+  twitter: cini_valerio
+  web: https://sites.google.com/view/valeriocini/home
+  cv: "Valerios' main research interest lies in the field of modern cryptography in the direction of provable security. In particular he is involved/fascinated by the growing area/field of post-quantum cryptography (e.g. lattice based crypto) and its possible applications."
+  pic: valerio_web.png
+
+- name: Erkan Tairi
+  role: PhD Student
+  institute: TU Wien
+  twitter: erkantairi
+  web: https://erkantairi.com/
+  cv: "Erkans' research interests include cryptography and privacy, with a specific focus on public key cryptography and foundations of cryptography, 
+  along with secure and efficient implementation of cryptographic primitives and protocols."
+  pic: erkan_web.png
+
+
+- name: Andreas Weninger
+  role: MSc Student
+  institute: AIT  (now PhD student at TU Wien)
+  twitter: 
+  web: 
+  cv: "Andreas is interested in modern cryptography and its many facets. This includes post-quantum cryptography, privacy-preserving cryptography, blockchain applications and many more."
+  pic: andreas_web.png

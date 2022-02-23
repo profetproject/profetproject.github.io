@@ -5,9 +5,10 @@ title: "Versatile and Sustainable Timed-Release Encryption and Sequential Time-L
 authors: Peter Chvojka, Tibor Jager, Daniel Slamanig, Christoph Striecks
 venue: "26th European Symposium on Research in Computer Security - ESORICS 2021"
 vurl: https://esorics2021.athene-center.de/
-vatt: (accepted)
 pdf: http://eprint.iacr.org/2020/739.pdf
 web: http://eprint.iacr.org/2020/739
+bib: https://dblp.org/rec/conf/esorics/ChvojkaJSS21.html?view=bibtex
+pub: https://doi.org/10.1007/978-3-030-88428-4_4
 
 ---
 
