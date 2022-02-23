@@ -44,12 +44,3 @@
   cv: "Erkans' research interests include cryptography and privacy, with a specific focus on public key cryptography and foundations of cryptography, 
   along with secure and efficient implementation of cryptographic primitives and protocols."
   pic: erkan_web.png
-
-
-- name: Andreas Weninger
-  role: MSc Student
-  institute: AIT
-  twitter: 
-  web: 
-  cv: "Andreas is interested in modern cryptography and its many facets. This includes post-quantum cryptography, privacy-preserving cryptography, blockchain applications and many more."
-  pic: andreas_web.png
