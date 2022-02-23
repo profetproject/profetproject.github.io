@@ -3,7 +3,7 @@ layout: post
 year: 2021
 title: "Versatile and Sustainable Timed-Release Encryption and Sequential Time-Lock Puzzles"
 authors: Peter Chvojka, Tibor Jager, Daniel Slamanig, Christoph Striecks
-venue: "26th European Symposium on Research in Computer Security - ESORICS 2021"
+venue: "26th European Symposium on Research in Computer Security - ESORICS 2021 (virtual)"
 vurl: https://esorics2021.athene-center.de/
 pdf: http://eprint.iacr.org/2020/739.pdf
 web: http://eprint.iacr.org/2020/739
