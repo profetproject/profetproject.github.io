@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Recent publications"
+date:   2022-03-14
+description: A long overdue update...
+---
+A long overdue update on results that we have recently published or got accepted for publication (in reverse chronological order). More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a>. 
+
+<p class="blockquote" align="justify">A paper on threshold ring signatures got accepted for publication at the <a href="https://pkc.iacr.org/2022/" target="_blank">25th International Conference on Practice and Theory of Public-Key Cryptography - PKC 2022 </a>.</p>
+
+<p class="blockquote" align="justify">A paper on subversion quasi-adaptive NIZK proofs has been published at the <a href="https://cans2021.at/" target="_blank">20th International Conference on Cryptology and Network Security - CANS 2021 </a>.</p>
+
+<p class="blockquote" align="justify">A paper on privacy-preserving authenticated key-exchange has been published at the <a href="https://esorics2021.athene-center.de/" target="_blank">26th European Symposium on Research in Computer Security - ESORICS 2021</a>. This paper contains parts of the results from the <a href="https://repositum.tuwien.at/handle/20.500.12708/18352" target="_blank">Master's Thesis</a> of <a href="https://secpriv.wien/team/andreas/" target="_blank">Andreas</a>, who now is a PhD student at TU Wien - congrats Andreas!</p>
+
+<p class="blockquote" align="justify">A paper on time released encryption has been published at the <a href="https://esorics2021.athene-center.de/" target="_blank">26th European Symposium on Research in Computer Security - ESORICS 2021</a>.</p>
+
+<p class="blockquote" align="justify">A paper on updatable smooth projective hashing has been published at the <a href="https://data61dsslab.github.io/acisp2021/" target="_blank">26th Australasian Conference on Information Security and Privacy - ACISP 2021</a>.</p>
+
+<hr> 

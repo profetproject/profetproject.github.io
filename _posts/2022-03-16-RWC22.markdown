@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Contributed Talk at Real World Crypto Symposium 2022"
+date:   2022-03-16
+description: On April 15th...
+---
+
+<p class="blockquote" align="justify">On April 15th <a href="https://christophstriecks.com/" target="_blank">Christoph</a> will deliver a contributed talk on "Puncturable Encryption – A Fine-Grained Approach to Forward-Secure Encryption and More" at the <a href="https://rwc.iacr.org/2022" target="_blank">Real World Crypto Symposium 2022</a>. The full program can be found <a href="https://rwc.iacr.org/2022/program.php" target="_blank">here</a>.</p>
+
+
+
+
+
+
