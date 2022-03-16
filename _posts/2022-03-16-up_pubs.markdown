@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Recent publications"
+title:  "Recent Publications"
 date:   2022-03-14
 description: A long overdue update...
 ---
