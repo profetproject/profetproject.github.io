@@ -2,7 +2,7 @@
 layout: post
 title:  "Best Paper Award at CANS 2021"
 date:   2022-03-15
-description: Our paper...
+description: The paper entitled...
 ---
 
 <p class="blockquote" align="justify">The paper entitled "Subversion-Resistant Quasi-Adaptive NIZK and Applications to Modular zk-SNARKs" authored by <a href="https://sites.google.com/view/behzad-abdolmaleki/home" target="_blank">Behzad Abdolmaleki</a> (Max Planck Institute for Security and Privacy) and Daniel Slamanig received the Best Paper Award at the <a href="https://cans2021.at/" target="_blank">20th International Conference on Cryptology and Network Security - CANS 2021 </a>.</p>
