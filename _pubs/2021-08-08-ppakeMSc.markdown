@@ -4,7 +4,7 @@ year: 2021
 title: "Privacy Preserving Authenticated Key Exchange – Modelling, Constructions, Proofs and Verification"
 authors: Andreas Weninger
 venue: "Master Thesis, TU Wien"
-vurl: https://pkc.iacr.org/2022/
+vurl: https://www.tuwien.at/en/
 pdf: https://repositum.tuwien.at/bitstream/20.500.12708/18352/1/Weninger%20Andreas%20Johann%20-%202021%20-%20Privacy%20Preserving%20Authenticated%20Key%20Exchange%20-...pdf
 web: https://repositum.tuwien.at/handle/20.500.12708/18352
 pub: https://doi.org/10.34726/hss.2021.87263
