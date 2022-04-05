@@ -5,9 +5,10 @@ title: "Logarithmic-Size (Linkable) Threshold Ring Signatures in the Plain Model
 authors: Abida Haque, Stephan Krenn, Daniel Slamanig, Christoph Striecks
 venue: "25th IACR International Conference on Practice and Theory of Public Key Cryptography - PKC 2022 (virtual)"
 vurl: https://pkc.iacr.org/2022/
-vatt: (accepted)
 pdf: https://eprint.iacr.org/2020/683.pdf
 web: https://eprint.iacr.org/2020/683
+pub: https://doi.org/10.1007/978-3-030-97131-1_15
+bib: https://dblp.org/rec/conf/pkc/HaqueKSS22.html?view=bibtex
 
 ---
 

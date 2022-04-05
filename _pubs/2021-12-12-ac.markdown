@@ -1,0 +1,20 @@
+---
+layout: post
+year: 2021
+title: "Generalized Channels from Limited Blockchain Scripts and Adaptor Signatures"
+authors: Lukas Aumayr, Oguzhan Ersoy, Andreas Erwig, Sebastian Faust, Kristina Hostáková, Matteo Maffei, Pedro Moreno-Sanchez, Siavash Riahi
+venue: "27th Annual International Conference on the Theory and Application of Cryptology and Information Security - ASIACRYPT 2021 (virtual)"
+vurl: https://asiacrypt.iacr.org/2021/
+pdf: https://eprint.iacr.org/2020/476.pdf
+web: https://eprint.iacr.org/2020/476
+pub: https://doi.org/10.1007/978-3-030-92075-3_22
+bib: https://dblp.org/rec/conf/asiacrypt/AumayrEEFHMMR21.html?view=bibtex
+
+
+
+---
+
+
+---
+
+
