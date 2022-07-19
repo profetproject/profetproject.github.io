@@ -1,4 +1,4 @@
-	---
+---
 layout: post
 title:  "Paper accepted at CRYPTO 2022"
 date:   2022-07-19
