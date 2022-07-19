@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Valerio presents at the Lattice Coding & Crypto Meeting"
+date:   2022-07-19
+description: On July 15th Valerio...
+---
+
+<p class="blockquote" align="justify">On July 15th <a href="https://christophstriecks.com/" target="_blank">Valerio</a> presented the upcoming CRYPTO 2022 paper "Lattice-Based SNARKs: Publicly Verifiable, Preprocessing, and Recursively Composable" at the <a href="http://malb.io/discrete-subgroup/2022/07/15/lattice-meeting/" target="_blank">Lattice Coding & Crypto Meeting</a> at Imperial College London.</p>
+
+<figure>
+    <a href="#img1" id="img1s">
+      <img src="/assets/img/LCC_meeting.png" width="640px" />
+  </a>
+  <!-- lightbox container hidden with CSS -->
+  <a href="#img1s" class="lightbox" id="img1">
+      <span style="background-image: url('/assets/img/LCC_meeting.png')"></span>
+  </a>
+</figure>
+
+
