@@ -5,7 +5,7 @@ date:   2022-07-19
 description: On July 15th Valerio...
 ---
 
-<p class="blockquote" align="justify">On July 15th <a href="https://christophstriecks.com/" target="_blank">Valerio</a> presented the upcoming CRYPTO 2022 paper "Lattice-Based SNARKs: Publicly Verifiable, Preprocessing, and Recursively Composable" at the <a href="http://malb.io/discrete-subgroup/2022/07/15/lattice-meeting/" target="_blank">Lattice Coding & Crypto Meeting</a> at Imperial College London.</p>
+<p class="blockquote" align="justify">On July 15th <a href="https://sites.google.com/view/valeriocini/home" target="_blank">Valerio</a> presented the upcoming CRYPTO 2022 paper "Lattice-Based SNARKs: Publicly Verifiable, Preprocessing, and Recursively Composable" at the <a href="http://malb.io/discrete-subgroup/2022/07/15/lattice-meeting/" target="_blank">Lattice Coding & Crypto Meeting</a> at Imperial College London.</p>
 
 <figure>
     <a href="#img1" id="img1s">

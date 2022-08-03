@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Valerio attends Workshop on Foundations and Applications of Lattice-based Cryptography "
+date:   2022-08-03
+description: From July 25th to 28th Valerio...
+---
+
+<p class="blockquote" align="justify">From July 25th to 28th <a href="https://sites.google.com/view/valeriocini/home" target="_blank">Valerio</a> attended the <a href="https://www.icms.org.uk/workshops/2022/foundations-and-applications-lattice-based-cryptography" target="_blank">Workshop on Foundations and Applications of Lattice-based Cryptography</a> at the International Centre for Mathematical Sciences in Edinburgh. He also gave a lightning talk on the upcoming CRYPTO 2022 paper "Lattice-Based SNARKs: Publicly Verifiable, Preprocessing, and Recursively Composable".</p>
+
+<figure>
+    <a href="#img1" id="img1s">
+      <img src="/assets/img/FALC.png" width="640px" />
+  </a>
+  <!-- lightbox container hidden with CSS -->
+  <a href="#img1s" class="lightbox" id="img1">
+      <span style="background-image: url('/assets/img/FALC.png')"></span>
+  </a>
+</figure>
+
+
