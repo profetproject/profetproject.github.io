@@ -5,7 +5,6 @@ title: "Sleepy Channels: Bitcoin-Compatible Bi-directional Payment Channels with
 authors: Lukas Aumayr, Sri AravindaKrishnan Thyagarajan, Giulio Malavolta, Pedro Monero-Sánchez, Matteo Maffei
 venue: "29th ACM Conference on Computer and Communications Security - ACM CCS 2022, November 7-11 2022, Los Angeles, USA"
 vurl: https://www.sigsac.org/ccs/CCS2022/
-vatt: (accepted)
 pdf: https://eprint.iacr.org/2021/1445.pdf
 web: https://eprint.iacr.org/2021/1445
 
