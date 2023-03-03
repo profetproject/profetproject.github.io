@@ -1,0 +1,17 @@
+---
+layout: post
+year: 2022
+title: "CRS-Updatable Asymmetric Quasi-Adaptive NIZK Arguments"
+authors: Behzad Abdolmaleki, Daniel Slamanig
+venue: "23rd International Conference on Cryptology in India - INDOCRYPT 2022"
+vurl: https://www.tcgcrest.org/indocrypt-2022/
+pdf: http://eprint.iacr.org/2022/1756.pdf
+web: http://eprint.iacr.org/2022/1756
+pub: https://doi.org/10.1007/978-3-031-22912-1_1
+
+---
+
+
+---
+
+

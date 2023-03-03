@@ -1,0 +1,17 @@
+---
+layout: post
+year: 2023
+title: "Practical Delegatable Anonymous Credentials From Equivalence Class Signatures"
+authors: Omid Mir, Daniel Slamanig, Balthazar Bauer, René Mayrhofer
+venue: "Proceedings on Privacy Enhancing Technologies (PoPETs)"
+vurl: https://petsymposium.org/
+pdf: https://eprint.iacr.org/2022/680.pdf
+web: https://eprint.iacr.org/2022/680
+vatt: (accepted)
+
+---
+
+
+---
+
+

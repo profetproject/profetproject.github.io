@@ -1,0 +1,17 @@
+---
+layout: post
+year: 2022
+title: "Thora: Atomic and Privacy-Preserving Multi-Channel Updates"
+authors: Lukas Aumayr, Kasra Abbaszadeh, Matteo Maffei
+venue: "29th ACM Conference on Computer and Communications Security - ACM CCS 2022, November 7-11 2022, Los Angeles, USA"
+vurl: https://www.sigsac.org/ccs/CCS2022/
+pdf: https://eprint.iacr.org/2022/317.pdf
+web: https://eprint.iacr.org/2022/317
+
+
+---
+
+
+---
+
+

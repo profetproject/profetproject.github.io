@@ -1,0 +1,16 @@
+---
+layout: post
+year: 2023
+title: "Unique-Path Identity Based Encryption With Applications to Strongly Secure Messaging"
+authors: Paul Rösler, Daniel Slamanig, Christoph Striecks
+venue: "42nd Annual International Conference on the Theory and Applications of Cryptographic Techniques - EUROCRYPT 2023"
+vurl: https://eurocrypt.iacr.org/2023/
+pdf: http://eprint.iacr.org/2023/248.pdf
+web: http://eprint.iacr.org/2023/248
+vatt: (accepted)
+---
+
+
+---
+
+

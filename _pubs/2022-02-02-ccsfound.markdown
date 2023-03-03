@@ -1,0 +1,15 @@
+---
+layout: post
+year: 2022
+title: "Foundations of Coin Mixing Services"
+authors: Noemi Glaeser, Matteo Maffei, Giulio Malavolta, Pedro Moreno-Sanchez, Erkan Tairi, Sri Aravinda Krishnan Thyagarajan
+venue: "29th ACM Conference on Computer and Communications Security - ACM CCS 2022, November 7-11 2022, Los Angeles, USA"
+vurl: https://www.sigsac.org/ccs/CCS2022/
+pdf: https://eprint.iacr.org/2022/942.pdf
+web: https://eprint.iacr.org/2022/942
+---
+
+
+---
+
+
