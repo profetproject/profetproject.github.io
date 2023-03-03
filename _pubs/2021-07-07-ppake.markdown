@@ -5,6 +5,8 @@ title: "Privacy-Preserving Authenticated Key Exchange: Stronger Privacy and Gene
 authors: Sebastian Ramacher, Daniel Slamanig, Andreas Weninger
 venue: "26th European Symposium on Research in Computer Security - ESORICS 2021 (virtual)"
 vurl: https://esorics2021.athene-center.de/
+pdf: https://eprint.iacr.org/2022/1338.pdf
+web: https://eprint.iacr.org/2022/1338
 bib: https://dblp.org/rec/conf/esorics/RamacherSW21.html?view=bibtex
 pub: https://doi.org/10.1007/978-3-030-88428-4_33
 

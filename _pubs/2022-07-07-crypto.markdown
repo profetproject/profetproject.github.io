@@ -5,7 +5,8 @@ title: "Lattice-Based SNARKs: Publicly Verifiable, Preprocessing, and Recursivel
 authors: Martin R. Albrecht, Valerio Cini, Russell W. F. Lai, Giulio Malavolta, Sri AravindaKrishnan Thyagarajan
 venue: "42nd Annual International Cryptology Conference - CRYPTO 2022, August 13-18 2022, Santa Barbara, USA"
 vurl: https://crypto.iacr.org/2022/
-vatt: (accepted)
+pdf: https://eprint.iacr.org/2022/941.pdf
+web: https://eprint.iacr.org/2022/941
 
 ---
 
