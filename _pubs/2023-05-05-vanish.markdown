@@ -1,0 +1,15 @@
+---
+layout: post
+year: 2023
+title: "Lattice-based Succinct Arguments from Vanishing Polynomials"
+authors: Valerio Cini, Russell W. F. Lai, Giulio Malavolta
+venue: "43rd Annual International Cryptology Conference - CRYPTO 2023, August 19-24, 2023, Santa Barbara, USA."
+vurl: https://crypto.iacr.org/2023/
+vatt: (accepted)
+
+---
+
+
+---
+
+
