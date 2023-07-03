@@ -7,7 +7,6 @@ venue: "42nd Annual International Conference on the Theory and Applications of C
 vurl: https://eurocrypt.iacr.org/2023/
 pdf: http://eprint.iacr.org/2023/248.pdf
 web: http://eprint.iacr.org/2023/248
-vatt: (accepted)
 ---
 
 

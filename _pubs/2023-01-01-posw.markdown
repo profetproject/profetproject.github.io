@@ -5,7 +5,6 @@ title: "An Incremental PoSW for General Weight Distributions"
 authors: Hamza Abusalah, Valerio Cini
 venue: "42nd Annual International Conference on the Theory and Applications of Cryptographic Techniques - EUROCRYPT 2023"
 vurl: https://eurocrypt.iacr.org/2023/
-vatt: (accepted)
 ---
 
 

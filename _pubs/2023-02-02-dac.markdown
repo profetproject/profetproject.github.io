@@ -7,7 +7,6 @@ venue: "Proceedings on Privacy Enhancing Technologies (PoPETs)"
 vurl: https://petsymposium.org/
 pdf: https://eprint.iacr.org/2022/680.pdf
 web: https://eprint.iacr.org/2022/680
-vatt: (accepted)
 
 ---
 
