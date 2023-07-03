@@ -5,7 +5,7 @@ date:   2023-05-25
 description: On May 25th, Daniel is lecturing...
 ---
 
-<p class="blockquote" align="justify">On May 25th, Daniel is lecturing on <b>Cryptography for Privacy-Preserving Applications</b> at the IIK Ph.D. Spring School 2025 held in Oslo, Norway</p>
+<p class="blockquote" align="justify">On May 25th, Daniel is lecturing on <b>Cryptography for Privacy-Preserving Applications</b> at the IIK Ph.D. Spring School 2025 held in Oslo, Norway 24-26 May 2023.</p>
 
 <hr> 
 
