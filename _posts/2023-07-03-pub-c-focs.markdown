@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Papers accepted at CRYPTO 2023 and FOCS 2023"
+date:   2023-07-03
+description: We have papers accepted at...
+---
+
+<p class="blockquote" align="justify">We have papers accepted at <a href="https://crypto.iacr.org/2023/" target="_blank">the  43rd Annual International Cryptology Conference - CRYPTO 2023</a>, in Santa Barbara (USA) from August 19-24, 2023, and at the <a href="https://focs.computer.org/2023/" target="_blank">the 64th Annual Symposium on Foundations of Computer Science - FOCS 2023</a>, in  Santa Cruz (USA) from November 6-9, 2023. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a>.</p>
+
+<hr> 
+
+The two papers are:
+
+<p class="blockquote" align="justify">Valerio Cini</b>, Russell W. F. Lai, Giulio Malavolta: <b>ULattice-based Succinct Arguments from Vanishing Polynomials</b>. 43rd Annual International Cryptology Conference - CRYPTO 2023.</p>
+
+<p class="blockquote" align="justify"><b>Valerio Cini</b>, Hoeteck Wee: <b>ABE for Circuits with poly(λ)-sized Keys from LWE</b> - 64th Annual Symposium on Foundations of Computer Science - FOCS 2023.</p>
+
+The talks can be found on the <a href="https://www.youtube.com/playlist?list=PLeeS-3Ml-rpoPvbe9Kwmtubt-d7bQrl_c" target="_blank">IACR channel on YouTube</a>.
+<hr>  
