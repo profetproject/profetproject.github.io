@@ -11,7 +11,7 @@ description: We have papers accepted at...
 
 The two papers are:
 
-<p class="blockquote" align="justify"><b>Valerio Cini</b>, Russell W. F. Lai, Giulio Malavolta: <b>ULattice-based Succinct Arguments from Vanishing Polynomials</b>. 43rd Annual International Cryptology Conference - CRYPTO 2023.</p>
+<p class="blockquote" align="justify"><b>Valerio Cini</b>, Russell W. F. Lai, Giulio Malavolta: <b>Lattice-based Succinct Arguments from Vanishing Polynomials</b>. 43rd Annual International Cryptology Conference - CRYPTO 2023.</p>
 
 <p class="blockquote" align="justify"><b>Valerio Cini</b>, Hoeteck Wee: <b>ABE for Circuits with poly(λ)-sized Keys from LWE</b> - 64th Annual Symposium on Foundations of Computer Science - FOCS 2023.</p>
 
