@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Two Papers presented at EUROCRYPT 2023"
+date:   2023-04-23
+description: Two papers presented at this years Eurocrypt...
+---
+
+<p class="blockquote" align="justify">Two papers presented at this years Eurocrypt, <a href="https://eurocrypt.iacr.org/2023/" target="_blank">the 42nd Annual International Conference on the Theory and Applications of Cryptographic Techniques</a>, in Lyon (France) from April 23-27, 2023. More information can be found <a href="https://profet.at/pubs/" target="_blank">here</a></p>
+
+<hr> 
+
+The two papers are:
+
+<p class="blockquote" align="justify">Hamza Abusalah, <b>Valerio Cini</b>: <b>An Incremental PoSW for General Weight Distributions</b>. 42nd Annual International Conference on the Theory and Applications of Cryptographic Techniques - EUROCRYPT 2023.</p>
+
+<p class="blockquote" align="justify">Paul Rösler, <b>Daniel Slamanig, Christoph Striecks</b>: <b>Unique-Path Identity Based Encryption With Applications to Strongly Secure Messaging</b>. 42nd Annual International Conference on the Theory and Applications of Cryptographic Techniques - EUROCRYPT 2023.</p>
+
+The talks can be found on the <a href="https://www.youtube.com/playlist?list=PLeeS-3Ml-rpoPvbe9Kwmtubt-d7bQrl_c" target="_blank">IACR channel on YouTube</a>.
+<hr>  
